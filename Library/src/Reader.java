@@ -1,12 +1,12 @@
 import java.io.Serializable;
 
-public class czytelnik implements Serializable {
+public class Reader implements Serializable {
     private String name;
     private String surname;
     private int age;
     private String address;
     private int banned;
-    public czytelnik(String name, String surname, int age, String address, int blocked){
+    public Reader(String name, String surname, int age, String address, int blocked){
         this.name=name;
         this.surname=surname;
         this.age=age;

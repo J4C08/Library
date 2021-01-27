@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-public class ksiazka implements Serializable {
+public class Book implements Serializable {
 	
 	private String nameBook;
 	private String author;
@@ -8,7 +8,7 @@ public class ksiazka implements Serializable {
         private String publishingYear;
         private String numberOfBooks;
 	
-	public ksiazka(String nameBook, String author, String publisher, String publishingYear, String numberOfBooks ){
+	public Book(String nameBook, String author, String publisher, String publishingYear, String numberOfBooks ){
                 this.nameBook = nameBook;
                 this.author = author;
                 this.publisher = publisher;
