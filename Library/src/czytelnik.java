@@ -5,13 +5,13 @@ public class czytelnik implements Serializable {
     private String surname;
     private int age;
     private String address;
-    private int blocked;
+    private int banned;
     public czytelnik(String name, String surname, int age, String address, int blocked){
         this.name=name;
         this.surname=surname;
         this.age=age;
         this.address=address;
-        this.blocked=blocked;
+        this.banned=banned;
     }
     public String getName(){
         return name;
@@ -25,8 +25,8 @@ public class czytelnik implements Serializable {
     public String getAddress(){
         return address;
     }
-    public int getBlocked(){
-        return blocked;
+    public int getBanned(){
+        return banned;
     }
     
 }
