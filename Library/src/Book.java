@@ -5,10 +5,10 @@ public class Book implements Serializable {
 	private String nameBook;
 	private String author;
 	private String publisher;
-        private String publishingYear;
-        private String numberOfBooks;
+        private int publishingYear;
+        private int numberOfBooks;
 	
-	public Book(String nameBook, String author, String publisher, String publishingYear, String numberOfBooks ){
+	public Book(String nameBook, String author, String publisher, int publishingYear, int numberOfBooks ){
                 this.nameBook = nameBook;
                 this.author = author;
                 this.publisher = publisher;
@@ -29,7 +29,7 @@ public class Book implements Serializable {
 		return publisher;
 	}
         
-        public String getPublishingYear(){
+        public int getPublishingYear(){
                 return publishingYear;
         }
         

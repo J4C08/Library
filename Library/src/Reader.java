@@ -5,8 +5,8 @@ public class Reader implements Serializable {
     private String surname;
     private int age;
     private String address;
-    private int banned;
-    public Reader(String name, String surname, int age, String address, int blocked){
+    private String banned;
+    public Reader(String name, String surname, int age, String address, String banned){
         this.name=name;
         this.surname=surname;
         this.age=age;
@@ -25,7 +25,7 @@ public class Reader implements Serializable {
     public String getAddress(){
         return address;
     }
-    public int getBanned(){
+    public String getBanned(){
         return banned;
     }
     
