@@ -33,27 +33,4 @@ public class Main {
             reader.add(new Reader("Jakub", "Tokarczuk", 3, "Midowa 7", "Tak"));
     
     }
-    
-    public void saveData(){
-		//Massive object to store all our objects
-		ArrayList<Object> data = new ArrayList<Object>();
-		data.add();
-		data.add();
-		data.add();
-		data.add();
-		
-		try {
-			FileOutputStream fileOut = new FileOutputStream("data.ser");
-			ObjectOutputStream out = new ObjectOutputStream(fileOut);
-			out.writeObject(data);
-			out.close();
-			fileOut.close();
-			System.out.println("Zapisywanie w data.ser");
-			
-		} catch(IOException i){
-			i.printStackTrace();
-		}
-	}
-    
-    
 }
