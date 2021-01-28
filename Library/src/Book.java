@@ -1,6 +1,5 @@
-import java.io.Serializable;
 
-public class Book implements Serializable {
+public class Book {
 	
 	private String nameBook;
 	private String author;
@@ -16,8 +15,8 @@ public class Book implements Serializable {
                 this.numberOfBooks = numberOfBooks;
                 
 	}
-	
-	public String getnameBook(){
+	// Gettery
+	public String getNameBook(){
 		return nameBook;
 	}
 	
@@ -33,7 +32,28 @@ public class Book implements Serializable {
                 return publishingYear;
         }
         
-        public String getNumberOfBooks(){
+        public int getNumberOfBooks(){
                 return numberOfBooks;
         }
+        // Settery
+        public void setNameBook(String nameBook) {
+                this.nameBook = nameBook;
+        }
+        
+        public void setAuthor(String author) {
+                this.author = author;
+        }
+        
+        public void setPublisher(String publisher) {
+                this.publisher = publisher;
+        }        
+                
+        public void setPublishingYear(int publishingYear) {
+                this.publisher = publisher;
+        } 
+        
+        public void setNumberOfBooks(int numberOfBooks) {
+                this.numberOfBooks = numberOfBooks;
+        }
+        
 }
