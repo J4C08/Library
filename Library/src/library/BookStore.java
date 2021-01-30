@@ -153,7 +153,8 @@ while((code=file.readLine())!=null)
     // Create object input stream                                                                        
     ObjectInputStream ois = new ObjectInputStream(fis);                               
     // Read student object data                                                                       
-    books = (ArrayList) ois.readObject();                                     
+    books = (ArrayList) ois.readObject();   
+    
     // Output student information                                                                         
     System.out.println(books);                                                      
     // Close the input stream                                                                          
