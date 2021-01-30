@@ -18,6 +18,7 @@ public class Library implements Serializable {
 //---------------------------------------------------------------------------
     List<Reader> readers = new ArrayList<Reader>();
     List<Book> books = new ArrayList<Book>();
+    
 //---------------------------------------------------------------------------
 //Name:          Add method.
 //Description:   Adds a student to the ArrayList.
@@ -65,11 +66,11 @@ public class Library implements Serializable {
         // IF statement to check that any book in the array list equals what
         // the user has typed in
         if (readers.get(i).getName().equalsIgnoreCase(name)) {
-
+        
             System.out.println(("Znalazles: " + readers.get(i).getName()));
 
         } 
-
+       
            
         }
 
@@ -192,7 +193,22 @@ public class Library implements Serializable {
     }
 
 } 
+  
+  public void searchPIN(long PIN) {
 
+    System.out.println("\n"+"Enter the title of the book you would like to search for: ");
+
+    for (int i = 0; i < readers.size(); i++) {
+
+        // IF statement to check that any book in the array list equals what
+        // the user has typed in
+        if (readers.get(i).getName().equals(PIN)) {
+
+            System.out.println(("Znalazles: " + readers.get(i).getPIN()));
+
+        } 
+    }
+  }
      public void booksWrite() throws Exception {
         // Create student object
         // Create file output stream
@@ -220,8 +236,78 @@ public class Library implements Serializable {
     fis.close();                                                                      
     ois.close();                                                                      
 }                           
-     
+    /*
+    public void wypozyczenieKsiazki(long PIN, String nameBook){
+         for (int i = 0; i < readers.size(); i++) {
+
+        // IF statement to check that any book in the array list equals what
+        // the user has typed in
+        
+        if (readers.get(i).getName().equals(PIN)) {
+            
+                if(readers.get(i).getName().equalsIgnoreCase(nameBook)){
+                    wypozyczone.add(books.get(i));
+                    books.remove(i);
+                }
+                
+        } 
+        
+        
+        
+        
+        
+         }
+    }*/
+    /*
+    public void wypozyczoneWrite() throws Exception {
+        // Create student object
+        // Create file output stream
+        FileOutputStream fos = new FileOutputStream("borrowed.txt");
+        // Create object output stream
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        // Write student object data
+        oos.writeObject(wypozyczone);
+        // Close the output stream
+        fos.close();
+        oos.close();
+    }
+    
+    public void wypozyczoneRead() throws Exception {                                             
+    // Create file input stream                                                                        
+    FileInputStream fis = new FileInputStream("borrowed.txt");       
+    // Create object input stream                                                                        
+    ObjectInputStream ois = new ObjectInputStream(fis);                               
+    // Read student object data                                                                       
+    wypozyczone = (ArrayList) ois.readObject();   
+    
+    // Output student information                                                                         
+    System.out.println(wypozyczone);                                                      
+    // Close the input stream                                                                          
+    fis.close();                                                                      
+    ois.close();                                                                      
+}      
+    
+   public ArrayList<Book> Library.wszystkieWypozyczoneKsiazki(){
+       ArrayList<Book> = returnval;
+      return guardaSugestao;
+   }
+      */
+    
+
+    
+    public void wypozycz(long PIN, Book lib) {
+        Reader r = new Reader();
+        Reader x = r.znajdzUzytkownika(readers, PIN);
+        x.wypozycz(lib);
+        books.remove(lib);
 }
+    
+         
+ 
+         }
+    
+    
+
 
 
     
