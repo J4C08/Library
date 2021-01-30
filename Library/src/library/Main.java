@@ -1,6 +1,13 @@
 package library;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.RandomAccessFile;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -14,30 +21,38 @@ public class Main {
         new Main().start();
 
     }
+    
+ 
+     
     public void start()throws Exception 
     {
+       
         BookStore bs = new BookStore();
-   
-        Book a = new Book("Pan Adam", "Jan Kowalski","Opera", 2000, 3);
-        Book b = new Book("W miescie i w puszczy", "Aleksander Maciej","Kozok", 1998, 4);
-        Book c = new Book("California", "Milosh Miodek","US", 2019, 1);
+      
+        
+        //Book a = new Book("Pan Adam", "Jan Kowalski","Opera", 2000, 3);
+        //Book b = new Book("W miescie i w puszczy", "Aleksander Maciej","Kozok", 1998, 4);
+        //Book c = new Book("California", "Milosh Miodek","US", 2019, 1);
  
-        bs.add(a);
-        bs.add(b);
-        bs.add(c);
-
+        //bs.add(a);
+        //bs.add(b);
+        //bs.add(c);
+          //bs.testWrite();
+          bs.testRead();
+        
 
 
         RandomAccessFile file = new RandomAccessFile("Ksiazki.txt","rw");
+       
         //getBytes() returns an array of bytes.
         //Because i have put the store in a static Array.(I done this because i could find no other
         //Simple way to write a Student Object.)
         //None of the methods of the RandomAccessFile write class worked with this.
-        //Student[] students = {a,b,c,d,e};
-        bs.write(file);
+        //Book[] books = {a,b,c,d,e};
+        //bs.write(file);
         //details.readAll(file);
         int choice;
-        System.out.println("Witaj w Bibliotece");
+        System.out.println("Witaj w Bibliotece!");
         do 
         {
             choice = MenuMethods.getMenuChoice( "1.\tView" +
@@ -58,36 +73,42 @@ public class Main {
                     {
         //---------------------------------------------------------------------------------------
 //          Name:        Case 1: View All
-//          Description: Choice 1 is to view all employee's in the store.
+//          Description: Choice 1 is to view all book's in the store.
         //---------------------------------------------------------------------------------------
                     case 1:
                         System.out.println("View All");
-                        bs.readAll(file);
+                       
+                        //bs.readAll(file);    
+                        //bs.print();
+                        //
+                        
                         break;
         //---------------------------------------------------------------------------------------
 //          Name:        Case 2: Add
-//          Description: Choice 2 is to add an employee to the store.
+//          Description: Choice 2 is to add an Book to the store.
         //---------------------------------------------------------------------------------------
                     case 2:
                   System.out.println("Add");
                         Book book = MenuMethods.userInput();
                         bs.add(book);
-                        file.write(book.toString().getBytes());
+                        bs.testWrite();
+                        //file.write(book.toString().getBytes());
                    
                         break;
         //---------------------------------------------------------------------------------------
 //          Name:        Case 3: Delete by Name.
-//          Description: Choice 3 gives the user an option to delete an employee by name.
+//          Description: Choice 3 gives the user an option to delete an Book by name.
         //---------------------------------------------------------------------------------------
                     case 3:
                         System.out.println("Delete by Name.");
+
                         //Employee employeeDelete = MenuMethods.userInputByName();
                         //Store.searchByName(employeeDelete.getEmployeeName());
                         //Store.remove(employeeDelete.getEmployeeName());
                         break;
         //---------------------------------------------------------------------------------------
 //                      Name:        Case 4: Delete All.
-//                      Description: Choice 4 gives the user a choice to delete all employee's in the store.
+//                      Description: Choice 4 gives the user a choice to delete all book's in the store.
         //---------------------------------------------------------------------------------------
                     case 4:
                         System.out.println("Delete All.");
@@ -96,8 +117,8 @@ public class Main {
                         break;
         //---------------------------------------------------------------------------------------
 //                      Name:        Case 4: Edit.
-//                      Description: Choice 4 gives the user an option to edit the employee's in the store.
-//                                   This consists of changing the employee's name,id and e-mail address.
+//                      Description: Choice 4 gives the user an option to edit the book's in the store.
+//                                   This consists of changing nameBook, author, publisher, publishingYear and numerOfBooks.
         //---------------------------------------------------------------------------------------
                     case 5:
                         System.out.println("Edit");
@@ -106,11 +127,14 @@ public class Main {
 
         //---------------------------------------------------------------------------------------
 //          Name:        Case 6: Search.
-//          Description: Choice 6 gives the user 2 options: Search by name and Search by email.
-//                       Search will run through the store and output the employee match the user inputs.
+//          Description: Choice 6 gives the user 5 options: Search by nameBook, Search by author, Search by publisher, Search by publishingYear and Search by numerOfBooks.
+//                       Search will run through the store and output the book match the user inputs.
         //---------------------------------------------------------------------------------------
                     case 6:
-
+                        System.out.println("Search by name book");                    
+                        String book1 = MenuMethods.userInputByBookName();
+                        bs.searchBook(book1);
+                        
                         break;
         //---------------------------------------------------------------------------------------
 //          Name:        Case 7: Store.
