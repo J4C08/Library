@@ -10,7 +10,10 @@ public class Book implements Serializable {
     private String publisher;
     private int publishingYear;
     private int numberOfBooks;
+
     
+     public Book() {
+    }
     
     // Konstruktor
     public Book(String nameBook, String author, String publisher, int publishingYear, int numberOfBooks) {
@@ -21,11 +24,7 @@ public class Book implements Serializable {
         this.numberOfBooks = numberOfBooks;
 
     }
-
-    public Book(String nameBook) {
-        this.nameBook = nameBook;
-    }
-
+    
     // Gettery
     public String getNameBook() {
         return nameBook;
@@ -71,12 +70,15 @@ public class Book implements Serializable {
     // toString.
      public String toString() 
     {
-        return "---------------------------Ksi¹¿ki--------------------------- " +
+        return 
+             "---------------------------Ksi¹¿ki---------------------------" +
                 "\nNazwa ksi¹¿ki: " + nameBook + 
                 "\nAutor: "+ author + 
                 "\nWydawnictwo : "+ publisher + 
                 "\nRok wydania publikacji : " + publishingYear +
                 "\nLiczba ksi¹¿ek : " + numberOfBooks +"\n\n";
     }
+
+ 
 
 }
