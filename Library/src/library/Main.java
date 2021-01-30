@@ -28,17 +28,27 @@ public class Main {
     {
        
         BookStore bs = new BookStore();
+        ReaderStore rs = new ReaderStore();
       
         
         //Book a = new Book("Pan Adam", "Jan Kowalski","Opera", 2000, 3);
         //Book b = new Book("W miescie i w puszczy", "Aleksander Maciej","Kozok", 1998, 4);
         //Book c = new Book("California", "Milosh Miodek","US", 2019, 1);
- 
         //bs.add(a);
         //bs.add(b);
         //bs.add(c);
+        
+        //Reader a = new Reader("Tomasz", "Nowak",15, "Kolorowa 11", "nie", "Inna Ksiazka");
+        //Reader b = new Reader("Anna", "Kwiat", 13, "Kwiatowa 2", "nie", "Inna Ksiazka 2");
+        //Reader c = new Reader("Szymon", "Wiœniewski",18, "Miodowa 7", "nie", "Inna Ksiazka 3");
+        //rs.add(a);
+        //rs.add(b);
+        //rs.add(c);
           //bs.testWrite();
           bs.testRead();
+          //rs.testWrite();
+          rs.testRead();
+          rs.borrowedBooks();
         
 
 
@@ -79,7 +89,7 @@ public class Main {
                         System.out.println("View All");
                        
                         //bs.readAll(file);    
-                        //bs.print();
+                        bs.print();
                         //
                         
                         break;
