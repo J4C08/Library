@@ -3,7 +3,7 @@ package library;
 import java.io.Serializable;
 
 public class Book implements Serializable {
-
+private static final long serialVersionUID = 3957568255253191261L;
     // Zmienne klasy
     private String nameBook;
     private String author;
