@@ -38,9 +38,9 @@ public class Main {
         //lib.addBook(b);
         //lib.addBook(c);
         
-        //Reader d = new Reader("Tomasz", "Nowak",15, "Kolorowa 11", "nie", "Inna Ksiazka");
-        //Reader e = new Reader("Anna", "Kwiat", 13, "Kwiatowa 2", "nie", "Inna Ksiazka 2");
-        //Reader f = new Reader("Szymon", "Wiœniewski",18, "Miodowa 7", "nie", "Inna Ksiazka 3");
+        //Reader d = new Reader("Tomasz", "Nowak",15, "Kolorowa 11", "nie", "Inna Ksiazka", 65093046874L);
+        //Reader e = new Reader("Anna", "Kwiat", 13, "Kwiatowa 2", "nie", "Inna Ksiazka 2", 83031046546L);
+        //Reader f = new Reader("Szymon", "Wiœniewski",18, "Miodowa 7", "nie", "Inna Ksiazka 3", 80022331881L);
         //lib.addReader(d);
         //lib.addReader(e);
         //lib.addReader(f);
@@ -48,11 +48,26 @@ public class Main {
         
         //lib.booksWrite();
         //lib.readerWrite();
+        Reader z = new Reader();
+        // tworzenie ksiazek
+        Reader d = new Reader("Jas", "Kowalski",18, "XD 11", "nie", "Inna ", 65093045874L);
+        Book c = new Book("Pan Tadeusz", "Adam Mickiewicz","Polska", 2019, 1);
+        lib.addReader(d);
+        lib.addBook(c);
+        
+        //Zapisywanie
+        lib.booksWrite();
+        lib.readerWrite();
+        //Wypozycz
+        
+        lib.wypozycz(65093045874L,c);
+        
+        //Zapisz wypozyczenie
+        lib.readerWrite();
         lib.booksRead();
         lib.readerRead();
         
-        
-
+        z.printWypozyczone();
 
         //RandomAccessFile file = new RandomAccessFile("Ksiazki.txt","rw");
        
@@ -91,10 +106,10 @@ public class Main {
                         System.out.println("View All");
                        
                         //bs.readAll(file);    
-                        lib.printBooks();
-                        lib.printReaders();
+                        //lib.printBooks();
+                        //lib.printReaders();
                         //
-                        
+                        //z.printWypozyczone();
                         break;
         //---------------------------------------------------------------------------------------
 //          Name:        Case 2: Add
@@ -157,12 +172,13 @@ public class Main {
                         
                         break;
         //---------------------------------------------------------------------------------------
-//          Name:        Case 7: Store.
+//          Name:        Case 7: WypozyczKsiazke.
 //          Description: Choice 7 gives the user an option to copy and read a store
 //                       using read and write class from Java.
         //---------------------------------------------------------------------------------------
                     case 7:
-
+                        Book wypoz = MenuMethods.userInput();
+                        //lib.wypozyczenieKsiazki(wypoz);
 
                         break;
         //---------------------------------------------------------------------------------------
