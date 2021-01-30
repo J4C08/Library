@@ -27,32 +27,34 @@ public class Main {
     public void start()throws Exception 
     {
        
-        BookStore bs = new BookStore();
-        ReaderStore rs = new ReaderStore();
+        Library lib = new Library();
+     
       
         
         //Book a = new Book("Pan Adam", "Jan Kowalski","Opera", 2000, 3);
         //Book b = new Book("W miescie i w puszczy", "Aleksander Maciej","Kozok", 1998, 4);
         //Book c = new Book("California", "Milosh Miodek","US", 2019, 1);
-        //bs.add(a);
-        //bs.add(b);
-        //bs.add(c);
+        //lib.addBook(a);
+        //lib.addBook(b);
+        //lib.addBook(c);
         
-        //Reader a = new Reader("Tomasz", "Nowak",15, "Kolorowa 11", "nie", "Inna Ksiazka");
-        //Reader b = new Reader("Anna", "Kwiat", 13, "Kwiatowa 2", "nie", "Inna Ksiazka 2");
-        //Reader c = new Reader("Szymon", "Wiœniewski",18, "Miodowa 7", "nie", "Inna Ksiazka 3");
-        //rs.add(a);
-        //rs.add(b);
-        //rs.add(c);
-          //bs.testWrite();
-          bs.testRead();
-          //rs.testWrite();
-          rs.testRead();
-          rs.borrowedBooks();
+        //Reader d = new Reader("Tomasz", "Nowak",15, "Kolorowa 11", "nie", "Inna Ksiazka");
+        //Reader e = new Reader("Anna", "Kwiat", 13, "Kwiatowa 2", "nie", "Inna Ksiazka 2");
+        //Reader f = new Reader("Szymon", "Wiœniewski",18, "Miodowa 7", "nie", "Inna Ksiazka 3");
+        //lib.addReader(d);
+        //lib.addReader(e);
+        //lib.addReader(f);
+        
+        
+        //lib.booksWrite();
+        //lib.readerWrite();
+        lib.booksRead();
+        lib.readerRead();
+        
         
 
 
-        RandomAccessFile file = new RandomAccessFile("Ksiazki.txt","rw");
+        //RandomAccessFile file = new RandomAccessFile("Ksiazki.txt","rw");
        
         //getBytes() returns an array of bytes.
         //Because i have put the store in a static Array.(I done this because i could find no other
@@ -89,7 +91,8 @@ public class Main {
                         System.out.println("View All");
                        
                         //bs.readAll(file);    
-                        bs.print();
+                        lib.printBooks();
+                        lib.printReaders();
                         //
                         
                         break;
@@ -100,8 +103,8 @@ public class Main {
                     case 2:
                   System.out.println("Add");
                         Book book = MenuMethods.userInput();
-                        bs.add(book);
-                        bs.testWrite();
+                        lib.addBook(book);
+                        lib.booksWrite();
                         //file.write(book.toString().getBytes());
                    
                         break;
@@ -111,7 +114,9 @@ public class Main {
         //---------------------------------------------------------------------------------------
                     case 3:
                         System.out.println("Delete by Name.");
-
+                        String delBook = MenuMethods.userInputByBookName();
+                        lib.deleteBook(delBook);
+                        lib.booksWrite();
                         //Employee employeeDelete = MenuMethods.userInputByName();
                         //Store.searchByName(employeeDelete.getEmployeeName());
                         //Store.remove(employeeDelete.getEmployeeName());
@@ -131,8 +136,13 @@ public class Main {
 //                                   This consists of changing nameBook, author, publisher, publishingYear and numerOfBooks.
         //---------------------------------------------------------------------------------------
                     case 5:
-                        System.out.println("Edit");
-
+                        System.out.println("Edit"); 
+                        Book bookEdit = MenuMethods.userInput();
+                         String searchBook = MenuMethods.userInputByBookName();
+                        lib.updateBook(searchBook, bookEdit);
+                        lib.booksWrite();
+                        
+                        
                         break;
 
         //---------------------------------------------------------------------------------------
@@ -143,7 +153,7 @@ public class Main {
                     case 6:
                         System.out.println("Search by name book");                    
                         String book1 = MenuMethods.userInputByBookName();
-                        bs.searchBook(book1);
+                        lib.searchBook(book1);
                         
                         break;
         //---------------------------------------------------------------------------------------
@@ -169,7 +179,7 @@ public class Main {
 
 
 
-        file.close();
+       
     
     /*
         public static void main(String[] args) throws IOException  {
