@@ -58,7 +58,7 @@ public class MenuMethods {
 //  Description: This method is used in the Main to give the user capability to enter
 //               the details when adding details of an employee into the store.
 //---------------------------------------------------------------------------------------
-    public static Book userInput() 
+    public static Book userInputBook() 
     {
         String temp = keyboard.nextLine();
         Book s = null;
@@ -92,6 +92,44 @@ public class MenuMethods {
 
         return nameBook;
 
+    }
+ 
+  public static Reader userInputReader() 
+    {
+        String temp = keyboard.nextLine();
+        Reader x = null;
+        System.out.println("Please enter the name:");
+        String name = keyboard.nextLine();
+        System.out.println("Please enter the surname:");
+        String surname = keyboard.nextLine();
+        System.out.println("Please enter the age:");
+        int age = keyboard.nextInt();
+        System.out.println("Please enter the address:");
+        String address = keyboard.nextLine();
+        System.out.println("Please enter the publisher year:");
+        String banned = null;
+        System.out.println("Please enter the numer of books:");
+        String PIN = keyboard.nextLine();
+        
+        return x = new Reader(name, surname, age, address, banned, PIN);
+
+    }
+  
+    public static Book inputUserFindMatchingBooks(){
+    String temp = keyboard.nextLine();
+        Book s = null;
+        System.out.println("Please enter the name book or type null:");
+        String nameBook = keyboard.nextLine();
+        System.out.println("Please enter the author or type null:");
+        String author = keyboard.nextLine();
+        System.out.println("Please enter the publisher or type null:");
+        String publisher = keyboard.nextLine();
+        System.out.println("Please enter the publisher year or type -1:");
+        int publishingYear = keyboard.nextInt();
+        System.out.println("Please enter the numer of books or type -1:");
+        int numberOfBooks = keyboard.nextInt();
+        
+        return s = new Book(nameBook, author, publisher, publishingYear, numberOfBooks );
     }
  
 
