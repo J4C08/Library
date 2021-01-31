@@ -48,8 +48,8 @@ public class Main {
         
         
         // tworzenie ksiazek
-        //Reader d = new Reader("Jas", "Kowalski",18, "XD 11", false, "65093045874");
-        //Book c = new Book("Pan Tadeusz", "Adam Mickiewicz","Polska", 2019, 1);
+        //Reader d = new Reader("Jas", "Kowalski",18, "XD 11", "NIE", "65093045874");
+        Book c = new Book("Pan Tadeusz", "Adam Mickiewicz","Polska", 2019, 1);
         //lib.addReader(d);
         //lib.addBook(c);
         //lib.booksWrite();
@@ -60,12 +60,12 @@ public class Main {
         //lib.readerWrite();
         //Wypozycz
         
-        //lib.wypozycz(65093045874L,c);
+        lib.wypozycz("65093045874",c);
         
         //Zapisz wypozyczenie
         //lib.readerWrite();
-       lib.booksRead();
-      lib.readerRead();
+       //lib.booksRead();
+       //lib.readerRead();
         
        // lib.searchReader(readers.get(d), 65093045874L);
 
@@ -109,6 +109,7 @@ public class Main {
                        
                         //bs.readAll(file);    
                         lib.printBooks();
+                        lib.printReaders();
                         //lib.printReaders();
                         //
                         //z.printWypozyczone();
@@ -180,7 +181,9 @@ public class Main {
 //                       using read and write class from Java.
         //---------------------------------------------------------------------------------------
                     case 7:
-                        Book wypoz = MenuMethods.userInputBook();
+                        lib.zablokujReadera("65093045874");
+                        lib.readerWrite();
+                        //Book wypoz = MenuMethods.userInputBook();
                         //lib.wypozyczenieKsiazki(wypoz);
 
                         break;
