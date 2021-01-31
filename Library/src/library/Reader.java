@@ -8,25 +8,23 @@ import java.util.List;
 public class Reader implements Serializable {
 private static final long serialVersionUID = -2908137848364231871L;
    
-    List<Book> wypozyczone = new ArrayList<Book>();
+    ArrayList<Book> wypozyczone = new ArrayList<Book>();
     private String name;
     private String surname;
     private int age;
     private String address;
     private String banned;
-    private String test;
-    private long PIN;
+    private String PIN;
 
     public Reader(){
     }
     
-    public Reader(String name, String surname, int age, String address, String banned, String test, long PIN) {
+    public Reader(String name, String surname, int age, String address, String banned, String PIN) {
             this.name = name;
             this.surname = surname;
             this.age = age;
             this.address = address;
             this.banned = banned;
-            this.test = test;
             this.PIN = PIN;
     }
     // Gettery
@@ -50,7 +48,7 @@ private static final long serialVersionUID = -2908137848364231871L;
             return banned;
     }
     
-     public long getPIN() {
+     public String getPIN() {
             return PIN;
     }
     // Settery
@@ -74,7 +72,7 @@ private static final long serialVersionUID = -2908137848364231871L;
             this.banned = banned;
     }
     
-    public void setPIN(long PIN){
+    public void setPIN(String PIN){
             this.PIN = PIN;
     }
     
@@ -92,27 +90,14 @@ private static final long serialVersionUID = -2908137848364231871L;
                 "\nWiek: "+ age + 
                 "\nAdres: " + address +
                 "\nZablokowany: " + banned +
-                "\nWypo¿yczona ksi¹¿ka: " + test +
                 "\nPesel: " + PIN +"\n\n";
     }
      
-      public Reader znajdzUzytkownika(List<Reader> readers, long PIN) {
-        for(Reader reader : readers){
-              if (reader.PIN == PIN) {
-                return reader;
-            }
-        }return null;
+      
 }
       
-       public void printWypozyczone() 
-    {
-        for (int i = 0; i < wypozyczone.size(); i++) 
-        {
-          Book b = wypozyczone.get(i);
-            System.out.println(b.toString());
-        }
-    }
-}
+
+
      
 
 
