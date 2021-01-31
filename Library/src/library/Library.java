@@ -130,13 +130,7 @@ public class Library implements Serializable {
 
 // end of method  
 //Szukanie po pesel
- public Reader searchReader(List<Reader> readers, String PIN) {
-        for(Reader reader : readers){
-              if (reader.getPIN() == PIN) {
-                return reader;
-            }
-        }return null;
- }
+
  
  public void searchReader2(String PIN) {
 
@@ -381,12 +375,36 @@ public class Library implements Serializable {
       */
     
 
+     public Book searchBook(List<Book> books, String nameBook, String author) {
+        for(Book book : books){
+              if (book.getNameBook().equals(nameBook) && book.getAuthor().equals(author)  ) {
+                return book;
+            }
+        }return null;
+ }
+     
+      public Reader searchReader(List<Reader> readers, String PIN) {
+        for(Reader reader : readers){
+              if (reader.getPIN().equals(PIN)) {
+                return reader;
+            }
+        }return null;
+ }
     
-    public void wypozycz(String PIN, Book lib) {
+    public boolean wypozycz(String PIN, String nameBook, String author) {
+         
+        Book y = searchBook(books, nameBook, author);
         Reader x = searchReader(readers, PIN);
-        x.wypozycz(lib);
-        books.remove(lib);
-}
+            if (x == null || y == null) 
+            { 
+                return false; 
+            }
+        x.wypozycz(y);
+        books.remove(y);
+        return true;
+        }
+        
+
     public ArrayList<Book> dajmiwszystkiewypozyczone() {
         ArrayList<Book> allBorrowed = new ArrayList<Book>();
        for (Reader r : readers) {
@@ -398,7 +416,24 @@ public class Library implements Serializable {
            return allBorrowed;
         } 
     
+        public ArrayList<Book> dajMiWszystkieWypozyczonePrzezReadera(String PIN) {
+            Reader x = searchReader(PIN);
+            return x.wypozyczone;
+    }
         
+        private Reader searchReader(String PIN) {
+        for(Reader reader : readers){
+              if (reader.getPIN().equals(PIN)) {
+                return reader;
+            }
+        }return null;
+    }
+        
+        
+         public void zablokujReadera(String PIN) {
+        Reader x = searchReader(PIN);
+        x.setBanned("TAK"); 
+    }
         
     }
     
