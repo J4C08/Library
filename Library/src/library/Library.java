@@ -10,14 +10,15 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 //---------------------------------------------------------------------------   
 public class Library implements Serializable { 
 //---------------------------------------------------------------------------
 //ArrayList declaration.
 //---------------------------------------------------------------------------
-    List<Reader> readers = new ArrayList<Reader>();
-    List<Book> books = new ArrayList<Book>();
+    ArrayList<Reader> readers = new ArrayList<Reader>();
+    ArrayList<Book> books = new ArrayList<Book>();
     
 //---------------------------------------------------------------------------
 //Name:          Add method.
@@ -28,35 +29,86 @@ public class Library implements Serializable {
         readers.add(reader);
     }
     
-    public void deleteAllReaders()
-     {
-           readers.clear();
-     }
-    //---------------------------------------------------------------------------
-//Name:          Delete method.
-//Description:   Delete's book by name in the ArrayList.
-    //---------------------------------------------------------------------------
+//---------------------------------------------------------------------------
+//Name:          Modify method.
+//Description:   Modify reader by PIN in the ArrayList.
+//---------------------------------------------------------------------------
 
- public void deleteReader(String s)
-     {
-         readers.remove(s);
-     }
-           
+    public void updateReader(String PIN, Reader reader)
+    {
+            for (int i = 0; i < readers.size(); i++) {
+                if (readers.get(i).getPIN().equalsIgnoreCase(PIN)) {
+                    System.out.println("Uda³o ci siê zmotyfikowaæ czytelnika.");
+                    readers.set(i, reader);
+                }
+            }
+    }
+    
+     //Szukanie po parametrze czytelnika.
+     public void FindMatchingReaders(String name, String surname, int age, String address, String banned, String PIN) {
+       
+        for (Reader reader : readers) {
+                if (name != null && !reader.getName().equals(name)) {
+                    
+                   continue;
+                }
+                
+                if (surname != null && !reader.getSurname().equals(surname)) {
+                    
+                    continue;
+                }
+                
+                if (age != -1 && reader.getAge() != age) {
+                  
+                     continue;
+                }
+                
+                 if (address != null && !reader.getSurname().equals(address)) {
+                    
+                    continue;
+                }
+                
+                if (banned != null && !reader.getSurname().equals(banned)) {
+                  
+                     continue;
+                } 
+                
+               if (PIN != null && !reader.getSurname().equals(PIN)) {
+                    
+                    continue;
+                }
+                
+                System.out.println("Matching user found: \n" + reader.toString());
+        }
+    }
+    
+    
+
+   
+    
      
+//---------------------------------------------------------------------------
+//Name:          Ban method.
+//Description:   Ban reader
+//---------------------------------------------------------------------------
+    /*public void zablokujReadera(String PIN) {
+        searchReader(PIN);
+        Reader x = znajdzUzytkownika(PIN);
+        x.IsDisabled = true;
+    }
+    */
 //---------------------------------------------------------------------------
 //Name:          Print method.
 //Description:   Prints out the contents of the ArrayList.
 //---------------------------------------------------------------------------
     public void printReaders() 
     {
-        for (int i = 0; i < readers.size(); i++) 
-        {
-          Reader a = readers.get(i);
-            System.out.println(a.toString());
+        for (Reader r : readers) {
+            System.out.print(r.toString());
         }
     }
     
-    //Szukanie
+   /* 
   public void searchReader(String name) {
 
     System.out.println("\n"+"Enter the title of the book you would like to search for: ");
@@ -74,16 +126,59 @@ public class Library implements Serializable {
            
         }
 
-    } // end of for
+    }*/ // end of for
 
 // end of method  
+//Szukanie po pesel
+ public Reader searchReader(List<Reader> readers, String PIN) {
+        for(Reader reader : readers){
+              if (reader.getPIN() == PIN) {
+                return reader;
+            }
+        }return null;
+ }
+ 
+ public void searchReader2(String PIN) {
 
+    System.out.println("\n"+"Enter the title of the book you would like to search for: ");
+
+    for (int i = 0; i < readers.size(); i++) {
+
+        // IF statement to check that any book in the array list equals what
+        // the user has typed in
+        if (readers.get(i).getPIN().equalsIgnoreCase(PIN)) {
+        
+            System.out.println(("Znalazles: " + readers.get(i).getPIN()));
+
+        } 
+       
+           
+        }
+
+    } 
+ 
     public int size()
     {
         return (readers == null) ? 0 : readers.size();
     }
+    // Szukanie po peselu.
+      public void searchPIN(long PIN) {
 
+    System.out.println("\n"+"Enter the title of the book you would like to search for: ");
 
+    for (int i = 0; i < readers.size(); i++) {
+
+        // IF statement to check that any book in the array list equals what
+        // the user has typed in
+        if (readers.get(i).getName().equals(PIN)) {
+
+            System.out.println(("Znalazles: " + readers.get(i).getPIN()));
+
+        } 
+    }
+  }
+
+    // Zapisywanie czytelnika 
      public void readerWrite() throws Exception {
         // Create student object
         // Create file output stream
@@ -97,6 +192,7 @@ public class Library implements Serializable {
         oos.close();
     }
     
+    // Wyswietlanie czytelnikow
     public void readerRead() throws Exception {                                             
     // Create file input stream                                                                        
     FileInputStream fis = new FileInputStream("reader.txt");       
@@ -112,29 +208,40 @@ public class Library implements Serializable {
     ois.close();                                                                      
 }  
     
-    //---------------------------------------------------------------------------
+//---------------------------------------------------------------------------
 //Name:          Add method.
-//Description:   Adds a student to the ArrayList.
+//Description:   Adds a book to the ArrayList.
 //---------------------------------------------------------------------------
     public void addBook(Book book) 
     {
         books.add(book);
     }
     
-    public void deleteAllBooks()
+//---------------------------------------------------------------------------
+//Name:          Delete method.
+//Description:   Adds a book to the ArrayList.
+//---------------------------------------------------------------------------    
+        
+    public void deleteBook(String nameBook)
      {
-           books.clear();
+        List<Book> found = new ArrayList<Book>();
+        for(Book book : books){
+            if(book.getNameBook().equals(nameBook)){
+        found.add(book);
+            }
      }
-    
+        books.removeAll(found);
+     }
+//---------------------------------------------------------------------------
+//Name:         Modify method.
+//Description:   Mofidy a book from the ArrayList.
+//---------------------------------------------------------------------------
     public void updateBook(String nameBook, Book book)
     {
             
-            System.out.println("\n"+"Enter the title of the book you would like to search for: ");
+            System.out.println("\n"+"Enter the title of the book you would like to modify: ");
             
     for (int i = 0; i < books.size(); i++) {
-
-        // IF statement to check that any book in the array list equals what
-        // the user has typed in
         if (books.get(i).getNameBook().equalsIgnoreCase(nameBook)) {
             System.out.println(("Zmodyfikowales: " + books.get(i).getNameBook()));
             books.set(i, book);
@@ -142,73 +249,53 @@ public class Library implements Serializable {
         } 
     }
     }
-    //---------------------------------------------------------------------------
-//Name:          Delete method.
-//Description:   Delete's book by name in the ArrayList.
-    //---------------------------------------------------------------------------
-
- public void deleteBook(String nameBook)
-     {
-          System.out.println("\n"+"Enter the title of the book you would like to search for: ");
-
-    for (int i = 0; i < books.size(); i++) {
-
-        // IF statement to check that any book in the array list equals what
-        // the user has typed in
-        if (books.get(i).getNameBook().equalsIgnoreCase(nameBook)) {
-            System.out.println(("Usun¹³eœ: " + books.get(i).getNameBook()));
-            books.remove(i);
-        } 
-         
-     }
-     }
-           
-     
+    
+    //Szukanie po parametrze ksiazki.
+    public void FindMatchingBooks(String nameBook, String author, String publisher, int publishingYear, int numberOfBooks) {
+        
+        for (Book book : books) {
+                if (nameBook != null && !book.getNameBook().equals(nameBook)) {
+                    
+                   continue;
+                }
+                
+               
+                if (author != null && !book.getAuthor().equals(author)) {
+                    
+                    continue;
+                }
+                
+                if (publisher != null && !book.getPublisher().equals(publisher)) {
+                    
+                     continue;
+                }
+                
+                if (publishingYear != -1 && book.getPublishingYear() != publishingYear) {
+                  
+                     continue;
+                }
+                
+                if (numberOfBooks != -1 && book.getNumberOfBooks() != numberOfBooks) {
+                    
+                    continue;
+                }
+                
+                System.out.println("Matching user found: \n" + book.toString());
+        }
+    }
+  
 //---------------------------------------------------------------------------
 //Name:          Print method.
 //Description:   Prints out the contents of the ArrayList.
 //---------------------------------------------------------------------------
     public void printBooks() 
     {
-        for (int i = 0; i < books.size(); i++) 
-        {
-          Book a = books.get(i);
-            System.out.println(a.toString());
+       for (Book b : books) {
+            System.out.println(b.toString());
         }
     }
     
-  public void searchBook(String nameBook) {
 
-    System.out.println("\n"+"Enter the title of the book you would like to search for: ");
-
-    for (int i = 0; i < books.size(); i++) {
-
-        // IF statement to check that any book in the array list equals what
-        // the user has typed in
-        if (books.get(i).getNameBook().equalsIgnoreCase(nameBook)) {
-            System.out.println(("Znalazles: " + books.get(i).getNameBook()));
-        } 
-
-           
-    }
-
-} 
-  
-  public void searchPIN(long PIN) {
-
-    System.out.println("\n"+"Enter the title of the book you would like to search for: ");
-
-    for (int i = 0; i < readers.size(); i++) {
-
-        // IF statement to check that any book in the array list equals what
-        // the user has typed in
-        if (readers.get(i).getName().equals(PIN)) {
-
-            System.out.println(("Znalazles: " + readers.get(i).getPIN()));
-
-        } 
-    }
-  }
      public void booksWrite() throws Exception {
         // Create student object
         // Create file output stream
@@ -295,16 +382,29 @@ public class Library implements Serializable {
     
 
     
-    public void wypozycz(long PIN, Book lib) {
-        Reader r = new Reader();
-        Reader x = r.znajdzUzytkownika(readers, PIN);
+    public void wypozycz(String PIN, Book lib) {
+        Reader x = searchReader(readers, PIN);
         x.wypozycz(lib);
         books.remove(lib);
 }
+    public ArrayList<Book> dajmiwszystkiewypozyczone() {
+        ArrayList<Book> allBorrowed = new ArrayList<Book>();
+       for (Reader r : readers) {
+            for (Book b : r.wypozyczone) {
+                allBorrowed.add(b);
+                System.out.println(allBorrowed);
+            }
+            }
+           return allBorrowed;
+        } 
+    
+        
+        
+    }
     
          
  
-         }
+         
     
     
 
