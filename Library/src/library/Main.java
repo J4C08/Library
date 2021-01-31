@@ -46,29 +46,31 @@ public class Main {
         //lib.addReader(f);
         
         
+        
+        // tworzenie ksiazek
+        //Reader d = new Reader("Jas", "Kowalski",18, "XD 11", false, "65093045874");
+        //Book c = new Book("Pan Tadeusz", "Adam Mickiewicz","Polska", 2019, 1);
+        //lib.addReader(d);
+        //lib.addBook(c);
         //lib.booksWrite();
         //lib.readerWrite();
-        Reader z = new Reader();
-        // tworzenie ksiazek
-        Reader d = new Reader("Jas", "Kowalski",18, "XD 11", "nie", "Inna ", 65093045874L);
-        Book c = new Book("Pan Tadeusz", "Adam Mickiewicz","Polska", 2019, 1);
-        lib.addReader(d);
-        lib.addBook(c);
         
         //Zapisywanie
-        lib.booksWrite();
-        lib.readerWrite();
+        //lib.booksWrite();
+        //lib.readerWrite();
         //Wypozycz
         
-        lib.wypozycz(65093045874L,c);
+        //lib.wypozycz(65093045874L,c);
         
         //Zapisz wypozyczenie
-        lib.readerWrite();
-        lib.booksRead();
-        lib.readerRead();
+        //lib.readerWrite();
+       lib.booksRead();
+      lib.readerRead();
         
-        z.printWypozyczone();
+       // lib.searchReader(readers.get(d), 65093045874L);
 
+       //lib.dajmiwszystkiewypozyczone();
+        
         //RandomAccessFile file = new RandomAccessFile("Ksiazki.txt","rw");
        
         //getBytes() returns an array of bytes.
@@ -106,7 +108,7 @@ public class Main {
                         System.out.println("View All");
                        
                         //bs.readAll(file);    
-                        //lib.printBooks();
+                        lib.printBooks();
                         //lib.printReaders();
                         //
                         //z.printWypozyczone();
@@ -117,7 +119,7 @@ public class Main {
         //---------------------------------------------------------------------------------------
                     case 2:
                   System.out.println("Add");
-                        Book book = MenuMethods.userInput();
+                        Book book = MenuMethods.userInputBook();
                         lib.addBook(book);
                         lib.booksWrite();
                         //file.write(book.toString().getBytes());
@@ -152,7 +154,7 @@ public class Main {
         //---------------------------------------------------------------------------------------
                     case 5:
                         System.out.println("Edit"); 
-                        Book bookEdit = MenuMethods.userInput();
+                        Book bookEdit = MenuMethods.userInputBook();
                          String searchBook = MenuMethods.userInputByBookName();
                         lib.updateBook(searchBook, bookEdit);
                         lib.booksWrite();
@@ -166,9 +168,10 @@ public class Main {
 //                       Search will run through the store and output the book match the user inputs.
         //---------------------------------------------------------------------------------------
                     case 6:
-                        System.out.println("Search by name book");                    
-                        String book1 = MenuMethods.userInputByBookName();
-                        lib.searchBook(book1);
+                        System.out.println("Search");   
+                   
+                        
+                        lib.FindMatchingBooks("Pan Tadeusz", null,"Polska", 2019, 1);
                         
                         break;
         //---------------------------------------------------------------------------------------
@@ -177,7 +180,7 @@ public class Main {
 //                       using read and write class from Java.
         //---------------------------------------------------------------------------------------
                     case 7:
-                        Book wypoz = MenuMethods.userInput();
+                        Book wypoz = MenuMethods.userInputBook();
                         //lib.wypozyczenieKsiazki(wypoz);
 
                         break;
