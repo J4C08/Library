@@ -74,13 +74,11 @@ public class MenuMethods {
 //  Name:        userInputByName.
 //  Description: This method is used in the MainApp to give the user capability to search by name.
 //---------------------------------------------------------------------------------------
- public static String userInputByBookName() 
+ public static String userInputBookName() 
     {
         // String temp is for some reason needed. If it is not included
         // The code will not execute properly.
         String temp = keyboard.nextLine();
-        Book s = null;
-        System.out.println("Please enter the Student Name:");
         String nameBook = keyboard.nextLine();
 
         return nameBook;
@@ -100,7 +98,7 @@ public class MenuMethods {
         System.out.println("Please enter the address:");
         String address = keyboard.nextLine();
         System.out.println("Please enter the publisher year:");
-        String banned = null;
+        String banned = "NIE";
         System.out.println("Please enter the numer of books:");
         String PIN = keyboard.nextLine();
         
@@ -123,6 +121,31 @@ public class MenuMethods {
         int numberOfBooks = keyboard.nextInt();
         
         return s = new Book(nameBook, author, publisher, publishingYear, numberOfBooks );
+    }
+    
+    public static String userInputByPIN(){
+        String temp = keyboard.nextLine();
+        Reader s = null;
+       
+        String PIN = keyboard.nextLine();
+
+        return PIN;
+    
+    
+    }
+
+    
+     public static String userInputAuthor() 
+    {
+        // String temp is for some reason needed. If it is not included
+        // The code will not execute properly.
+        String temp = keyboard.nextLine();
+        Book s = null;
+        System.out.println("Please name the author of the book:");
+        String author = keyboard.nextLine();
+
+        return author;
+
     }
  
 
