@@ -1,18 +1,11 @@
 package library;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.RandomAccessFile;
-import java.util.List;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Main {
 //---------------------------------------------------------------------------------------
-//  The Scanner is declared here for use throughout the whole MainApp.
+//  The Scanner is declared here for use throughout the whole Main.
 //---------------------------------------------------------------------------------------
     private static Scanner keyboard = new Scanner(System.in);
 
@@ -22,14 +15,12 @@ public class Main {
 
     }
     
- 
-     
     public void start()throws Exception 
     {
        
         Library lib = new Library();
-     
-      
+        LocalDate date = LocalDate.now();
+       
         
         //Book a = new Book("Pan Adam", "Jan Kowalski","Opera", 2000, 3);
         //Book b = new Book("W miescie i w puszczy", "Aleksander Maciej","Kozok", 1998, 4);
@@ -49,7 +40,12 @@ public class Main {
         
         // tworzenie ksiazek
         //Reader d = new Reader("Jas", "Kowalski",18, "XD 11", "NIE", "65093045874");
-        Book c = new Book("Pan Tadeusz", "Adam Mickiewicz","Polska", 2019, 1);
+        //Book c = new Book("Pan Tadeusz", "Adam Mickiewicz","Polska", 2019, 1);
+        
+        // testowa historia wypozyczenia do wyswietlenia 
+        Loan e = new Loan(date.toString(),date.plusWeeks(2).toString());
+        e.addLoan(e);
+        e.printLoan();
         //lib.addReader(d);
         //lib.addBook(c);
         //lib.booksWrite();
@@ -60,7 +56,7 @@ public class Main {
         //lib.readerWrite();
         //Wypozycz
         
-        lib.wypozycz("65093045874",c);
+        //lib.wypozycz("65093045874",c);
         
         //Zapisz wypozyczenie
         //lib.readerWrite();
@@ -84,15 +80,21 @@ public class Main {
         System.out.println("Witaj w Bibliotece!");
         do 
         {
-            choice = MenuMethods.getMenuChoice( "1.\tView" +
-                                                "\n2.\tAdd"+ 
-                                                "\n3.\tDelete" + 
-                                                "\n4.\tDelete All " + 
-                                                "\n5.\tEdit"+ 
-                                                "\n6.\tSearch" + 
-                                                "\n7.\tStore" + 
-                                                "\n8.\tExit", 8,
-                                                "Please enter your choice:", "Error [1,8] Only");
+            choice = MenuMethods.getMenuChoice( "1.\tView books" +
+                                                "\n2.\tAdd book"+ 
+                                                "\n3.\tEdit book" + 
+                                                "\n4.\tDelete book." + 
+                                                "\n5.\tSearch for a book by parameter"+ 
+                                                "\n6.\tView readers by parameter" + 
+                                                "\n7.\tAdd reader" + 
+                                                "\n8.\tEdit reader" +
+                                                "\n9.\tBlock reader" +
+                                                "\n10.\tBorrow book" +
+                                                "\n11.\tShow all books that are borrowed" +
+                                                "\n12.\tShow books borrowed by the selected reader" +
+                                                "\n13.\tShow books that are overdue returns." +
+                                                "\n14.\tExit", 14,
+                                                "Please enter your choice:", "Error [1,14] Only");
         // String temp = keyboard.nextLine(); This prevented entering the choice.
         //---------------------------------------------------------------------------------------
 //          Name:        Switch Statement.
@@ -106,13 +108,7 @@ public class Main {
         //---------------------------------------------------------------------------------------
                     case 1:
                         System.out.println("View All");
-                       
-                        //bs.readAll(file);    
-                        lib.printBooks();
-                        lib.printReaders();
-                        //lib.printReaders();
-                        //
-                        //z.printWypozyczone();
+
                         break;
         //---------------------------------------------------------------------------------------
 //          Name:        Case 2: Add
@@ -172,7 +168,7 @@ public class Main {
                         System.out.println("Search");   
                    
                         
-                        lib.FindMatchingBooks("Pan Tadeusz", null,"Polska", 2019, 1);
+                        //lib.FindMatchingBooks("Pan Tadeusz", null,"Polska", 2019, 1);
                         
                         break;
         //---------------------------------------------------------------------------------------
@@ -181,8 +177,8 @@ public class Main {
 //                       using read and write class from Java.
         //---------------------------------------------------------------------------------------
                     case 7:
-                        lib.zablokujReadera("65093045874");
-                        lib.readerWrite();
+                        //lib.zablokujReadera("65093045874");
+                        //lib.readerWrite();
                         //Book wypoz = MenuMethods.userInputBook();
                         //lib.wypozyczenieKsiazki(wypoz);
 
@@ -197,47 +193,10 @@ public class Main {
                         break;
                     }
 
-                } while (choice != 8);
-
-
-
-       
+                } while (choice != 14);
     
-    /*
-        public static void main(String[] args) throws IOException  {
-        ArrayList<Book> book = new ArrayList<Book>();
-        ArrayList<Reader> reader = new ArrayList<Reader>();    
-          
-        book.add(new Book("Pan Adam", "Jan Kowalski","Opera", 2000, 3));
-        book.add(new Book("W miescie i w puszczy", "Aleksander Maciej","Kozok", 1998, 4));
-        book.add(new Book("California", "Milosh Miodek","US", 2019, 1));
-          
-        reader.add(new Reader("Szymon", "Nowak", 2, "Kolorowa 11", "Nie"));
-        reader.add(new Reader("Krystyna", "Wikipedia", 1, "Piekna 2", "Nie"));
-        reader.add(new Reader("Jakub", "Tokarczuk", 3, "Midowa 7", "Tak"));  
-        DataOutputStream out;
-        DataInputStream in = null;
-         try {
-            out = new DataOutputStream( new BufferedOutputStream( new FileOutputStream("text.txt")));
-
-            for (int i = 0; i < 1; i++) {
-             out.write(book.getNameBook("Wuwu"));
-            }
-            
-            out.close();
-
-        } catch (EOFException ex) {
-            System.out.println("Koniec pliku do odczytu...");
-        } catch (UTFDataFormatException ex) {
-            System.err.println("Plik nie posiada danych zakodowanych w UTF...");
-        } catch (IOException ex) {
-            if (in != null) {
-                in.close();
-            }
-            System.err.println("Nie uda³o siê otworzyæ pliku do odczytu...");
-        }*/
-    
-        }}
+        }
+}
 
     
 
