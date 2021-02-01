@@ -19,7 +19,7 @@ public class Main {
     {
        
         Library lib = new Library();
-        LocalDate date = LocalDate.now();
+        
        
         
         //Book a = new Book("Pan Adam", "Jan Kowalski","Opera", 2000, 3);
@@ -36,32 +36,36 @@ public class Main {
         //lib.addReader(e);
         //lib.addReader(f);
         
-        
+          lib.booksRead();
+         lib.readersRead();
         
         // tworzenie ksiazek
         //Reader d = new Reader("Jas", "Kowalski",18, "XD 11", "NIE", "65093045874");
         //Book c = new Book("Pan Tadeusz", "Adam Mickiewicz","Polska", 2019, 1);
-        
+        //Reader e = new Reader("TestNIE", "Test",18, "test", "NIE", "65093045875");
         // testowa historia wypozyczenia do wyswietlenia 
-        Loan e = new Loan(date.toString(),date.plusWeeks(2).toString());
-        e.addLoan(e);
-        e.printLoan();
-        //lib.addReader(d);
-        //lib.addBook(c);
+        //Reader test = new Reader("Test2", "Test2",18, "XD 11", "NIE", "65093045872");
+        //Book test1 = new Book("przeterminowanaojedendzien", "ABCD","ENGLANDO", 2019, 9);
+        //lib.addReader(test);
+         //lib.addReader(f);
+        //lib.addBook(test1);
         //lib.booksWrite();
-        //lib.readerWrite();
+        //lib.readersWrite();
         
         //Zapisywanie
         //lib.booksWrite();
         //lib.readerWrite();
         //Wypozycz
-        
-        //lib.wypozycz("65093045874",c);
+       
+         //lib.wypozycz("65093045872","przeterminowanaojedendzien","ABCD");
+         //lib.booksWrite();
+        //lib.readersWrite();
+        lib.overdueBooks();
+        //System.out.println(lib.allBorrowedBooksByReader("65093045872"));
         
         //Zapisz wypozyczenie
         //lib.readerWrite();
-       //lib.booksRead();
-       //lib.readerRead();
+      
         
        // lib.searchReader(readers.get(d), 65093045874L);
 
@@ -83,7 +87,7 @@ public class Main {
             choice = MenuMethods.getMenuChoice( "1.\tView books" +
                                                 "\n2.\tAdd book"+ 
                                                 "\n3.\tEdit book" + 
-                                                "\n4.\tDelete book." + 
+                                                "\n4.\tDelete book" + 
                                                 "\n5.\tSearch for a book by parameter"+ 
                                                 "\n6.\tView readers by parameter" + 
                                                 "\n7.\tAdd reader" + 
@@ -107,17 +111,17 @@ public class Main {
 //          Description: Choice 1 is to view all book's in the store.
         //---------------------------------------------------------------------------------------
                     case 1:
-                        System.out.println("View All");
-
+                        System.out.println("View books");
+                        lib.printBooks();
                         break;
         //---------------------------------------------------------------------------------------
 //          Name:        Case 2: Add
 //          Description: Choice 2 is to add an Book to the store.
         //---------------------------------------------------------------------------------------
                     case 2:
-                  System.out.println("Add");
-                        Book book = MenuMethods.userInputBook();
-                        lib.addBook(book);
+                        System.out.println("Add book");
+                        Book addBook = MenuMethods.userInputBook();
+                        lib.addBook(addBook);
                         lib.booksWrite();
                         //file.write(book.toString().getBytes());
                    
@@ -127,21 +131,25 @@ public class Main {
 //          Description: Choice 3 gives the user an option to delete an Book by name.
         //---------------------------------------------------------------------------------------
                     case 3:
-                        System.out.println("Delete by Name.");
-                        String delBook = MenuMethods.userInputByBookName();
-                        lib.deleteBook(delBook);
+                        System.out.println("Edit book");
+                        System.out.println("Enter the parameters of the book.");
+                        Book bookEdit = MenuMethods.userInputBook();
+                        System.out.println("Please provide the title of the book you wish to edit.");
+                        String searchBook = MenuMethods.userInputBookName();
+                        lib.updateBook(searchBook, bookEdit);
                         lib.booksWrite();
-                        //Employee employeeDelete = MenuMethods.userInputByName();
-                        //Store.searchByName(employeeDelete.getEmployeeName());
-                        //Store.remove(employeeDelete.getEmployeeName());
+                       
                         break;
         //---------------------------------------------------------------------------------------
 //                      Name:        Case 4: Delete All.
 //                      Description: Choice 4 gives the user a choice to delete all book's in the store.
         //---------------------------------------------------------------------------------------
                     case 4:
-                        System.out.println("Delete All.");
-                        //Store.clear();
+                        System.out.println("Delete book");
+                        System.out.println("Please state the title of the book you wish to remove.");
+                        String delete = MenuMethods.userInputBookName();
+                        lib.deleteBook(delete);
+                        lib.booksWrite();
 
                         break;
         //---------------------------------------------------------------------------------------
@@ -150,11 +158,26 @@ public class Main {
 //                                   This consists of changing nameBook, author, publisher, publishingYear and numerOfBooks.
         //---------------------------------------------------------------------------------------
                     case 5:
-                        System.out.println("Edit"); 
-                        Book bookEdit = MenuMethods.userInputBook();
-                         String searchBook = MenuMethods.userInputByBookName();
-                        lib.updateBook(searchBook, bookEdit);
-                        lib.booksWrite();
+                        System.out.println("Search for a book by parameter");
+                        String nameBook = null;
+                        String author = null;
+                        String publisher = null;
+                        int publishingYear = -1;
+                        int numberOfBooks = -1;
+                        String temp = keyboard.nextLine();
+                        System.out.println("Enter a name or type null:");
+                        System.out.println("Please enter the name book or type null:");
+                        nameBook = keyboard.nextLine();
+                        System.out.println("Please enter the author or type null:");
+                        author = keyboard.nextLine();
+                        System.out.println("Please enter the publisher or type null:");
+                        publisher = keyboard.nextLine();
+                        System.out.println("Please enter the publisher year or type -1:");
+                        publishingYear = keyboard.nextInt();
+                        System.out.println("Please enter the numer of books or type -1:");
+                        numberOfBooks = keyboard.nextInt();
+                        
+                        lib.findMatchingBooks(nameBook, author, publisher, publishingYear, numberOfBooks);
                         
                         
                         break;
@@ -165,8 +188,31 @@ public class Main {
 //                       Search will run through the store and output the book match the user inputs.
         //---------------------------------------------------------------------------------------
                     case 6:
-                        System.out.println("Search");   
-                   
+                        System.out.println("View readers by parameter"); 
+                        String name = null;
+                        String surname = null;
+                        int age = -1;
+                        String address = null;
+                        String banned = null;
+                        String pin = null;
+                        String temp2 = keyboard.nextLine();
+                        System.out.println("Enter a name or type null:");
+                        name = keyboard.nextLine();
+                        System.out.println("Please enter the name book or type null:");
+                        surname = keyboard.nextLine();
+                        System.out.println("Please enter the author or type null:");
+                        age = keyboard.nextInt();
+                        System.out.println("Please enter the publisher or type null:");
+                        address = keyboard.nextLine();
+                        System.out.println("Please enter the publisher or type null:");
+                        banned = keyboard.nextLine();
+                        System.out.println("Please enter the publisher year or type -1:");
+                        pin = keyboard.nextLine();
+                        System.out.println("Please enter the numer of books or type -1:");
+                        numberOfBooks = keyboard.nextInt();
+                        
+                        lib.findMatchingReaders(name, surname, age, address, banned, pin);
+                        //lib.FindMatchingReaders();
                         
                         //lib.FindMatchingBooks("Pan Tadeusz", null,"Polska", 2019, 1);
                         
@@ -177,10 +223,10 @@ public class Main {
 //                       using read and write class from Java.
         //---------------------------------------------------------------------------------------
                     case 7:
-                        //lib.zablokujReadera("65093045874");
-                        //lib.readerWrite();
-                        //Book wypoz = MenuMethods.userInputBook();
-                        //lib.wypozyczenieKsiazki(wypoz);
+                        System.out.println("Add reader");
+                        Reader addReader = MenuMethods.userInputReader();
+                        lib.addReader(addReader);
+                        lib.booksWrite();
 
                         break;
         //---------------------------------------------------------------------------------------
@@ -188,11 +234,57 @@ public class Main {
 //          Description: Choice 8 will exit the application.
         //---------------------------------------------------------------------------------------
                     case 8:
+                        System.out.println("Edit reader");
+                        System.out.println("Please, enter the parameters of the book.");
+                        Reader readerEdit = MenuMethods.userInputReader();
+                        System.out.println("");
+                        System.out.println("Please enter your PIN.");
+                        String searchReader = MenuMethods.userInputByPIN();
+                        lib.updateReader(searchReader, readerEdit);
+                        lib.readersWrite();
+                        break;
+                   
+                    
+                    case 9:
+                        System.out.println("Block reader");
+                        String banReader = MenuMethods.userInputByPIN();
+                        lib.banReader(banReader);
+                        break;
+                        
+                    case 10:
+                        System.out.println("Borrow book");
+                        System.out.println("Please enter your PIN.");
+                        String PIN = MenuMethods.userInputByPIN();
+                        System.out.println(" ");
+                        String nB = MenuMethods.userInputBookName();
+                        String authoR = MenuMethods.userInputAuthor();
+                        lib.wypozycz(PIN, nB, authoR);
+                        //lib.wypozycz("65093045872","przeterminowanaojedendzien","ABCD");
+                        break;
+                        
+                    case 11:
+                        System.out.println("Show all books that are borrowed");
+                        lib.allBorrowedBooks();
+                        break;    
+                    
+                    case 12:
+                        System.out.println("Show books borrowed by the selected reader");
+                        System.out.println("Please enter your PIN.");
+                        String pinB = MenuMethods.userInputByPIN();
+                        lib.allBorrowedBooksByReader(pinB);
+                        break;    
+                        
+                    case 13:
+                        System.out.println("Show books that are overdue returns");
+                        lib.overdueBooks();
+                        break;   
+                        
+                    case 14:
                         System.out.println("Exit");
 
-                        break;
+                        break;    
                     }
-
+                    
                 } while (choice != 14);
     
         }
