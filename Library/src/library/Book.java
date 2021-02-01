@@ -1,9 +1,15 @@
 package library;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Book implements Serializable {
-private static final long serialVersionUID = 7724325370012823291L;
+     ArrayList<Loan> loanHistory = new ArrayList<Loan>();
+    
+    
+    // UID
+    private static final long serialVersionUID = 7724325370012823291L;
+
     // Zmienne klasy
     private String nameBook;
     private String author;
@@ -11,8 +17,8 @@ private static final long serialVersionUID = 7724325370012823291L;
     private int publishingYear;
     private int numberOfBooks;
 
-    
      public Book() {
+         
     }
     
     // Konstruktor
@@ -66,6 +72,11 @@ private static final long serialVersionUID = 7724325370012823291L;
     public void setNumberOfBooks(int numberOfBooks) {
         this.numberOfBooks = numberOfBooks;
     }
+    
+    public void loan(Loan loan) {
+        loanHistory.add(loan);
+        
+        }
     
     // toString.
      public String toString() 
