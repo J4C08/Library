@@ -1,16 +1,9 @@
 package library;
 
-
-    //---------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------
 //  Name:           Imports. 
 //  Description:    To allow the use of different Java classes.
 //---------------------------------------------------------------------------------------
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Scanner;
 //---------------------------------------------------------------------------------------
 public class MenuMethods {
