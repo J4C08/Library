@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Reader implements Serializable {
 private static final long serialVersionUID = -2908137848364231871L;
-   
+    ArrayList<Loan> loanHistory = new ArrayList<Loan>();
     ArrayList<Book> wypozyczone = new ArrayList<Book>();
     private String name;
     private String surname;
@@ -78,8 +78,13 @@ private static final long serialVersionUID = -2908137848364231871L;
     
     public void wypozycz(Book b) {
         wypozyczone.add(b);
+        
         }
     
+    public void loan(Loan loan) {
+        loanHistory.add(loan);
+        
+        }
     // toString.
      public String toString() 
     {
