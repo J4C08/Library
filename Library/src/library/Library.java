@@ -21,7 +21,7 @@ public class Library implements Serializable {
     ArrayList<Book> books = new ArrayList<Book>();
 
 
-LocalDate date = LocalDate.now();
+    LocalDate date = LocalDate.now();
 //---------------------------------------------------------------------------
 //-------------------------------READERS-------------------------------------                                
 //---------------------------------------------------------------------------
@@ -56,7 +56,7 @@ LocalDate date = LocalDate.now();
 //Name:          FindMatchingReaders method.
 //Description:   Finds matching readers by name, surname, address, pesel in ArrayList
 //---------------------------------------------------------------------------
-     public void FindMatchingReaders(String name, String surname, int age, String address, String banned, String PIN) {
+     public void findMatchingReaders(String name, String surname, int age, String address, String banned, String PIN) {
        
         for (Reader reader : readers) {
                 if (name != null && !reader.getName().equals(name)) {
@@ -327,7 +327,7 @@ LocalDate date = LocalDate.now();
        for (Reader r : readers) {
             for (Book b : r.wypozyczone) {
                 allBorrowed.add(b);
-                System.out.println(allBorrowed);
+                System.out.println(allBorrowed.toString());
             }
             }
            return allBorrowed;
@@ -346,12 +346,32 @@ LocalDate date = LocalDate.now();
         }return null;
     }
         
+     public ArrayList<Book> overdueBooks() {
+        ArrayList<Book> overdueBooks = new ArrayList<Book>();
+        books.removeAll(overdueBooks);
+            for (Reader r : readers) {
+                for (Book b : r.wypozyczone) {
+                    for(Loan l : r.loanHistory){
+                        if(LocalDate.parse(l.getDateOfReturn()).compareTo(date) <= -1 || LocalDate.parse(l.getDateOfReturn()).compareTo(date) <= -14 ){
+                        overdueBooks.add(b);
+                        System.out.println(overdueBooks.toString());
+                        }
+                }
+            }
+           
+        } ;
+        return overdueBooks;
+     }
+}
+               
+            
+           
+            
         
-         
         
-        
-        
-    }
+
+    
+
     
          
  
