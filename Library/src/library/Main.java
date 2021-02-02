@@ -20,63 +20,11 @@ public class Main {
        
         Library lib = new Library();
         
-       
-        
-        //Book a = new Book("Pan Adam", "Jan Kowalski","Opera", 2000, 3);
-        //Book b = new Book("W miescie i w puszczy", "Aleksander Maciej","Kozok", 1998, 4);
-        //Book c = new Book("California", "Milosh Miodek","US", 2019, 1);
-        //lib.addBook(a);
-        //lib.addBook(b);
-        //lib.addBook(c);
-        
-        //Reader d = new Reader("Tomasz", "Nowak",15, "Kolorowa 11", "nie", "Inna Ksiazka", 65093046874L);
-        //Reader e = new Reader("Anna", "Kwiat", 13, "Kwiatowa 2", "nie", "Inna Ksiazka 2", 83031046546L);
-        //Reader f = new Reader("Szymon", "Wiœniewski",18, "Miodowa 7", "nie", "Inna Ksiazka 3", 80022331881L);
-        //lib.addReader(d);
-        //lib.addReader(e);
-        //lib.addReader(f);
-        
          lib.booksRead();
          lib.readersRead();
-        
-        // tworzenie ksiazek
-        //Reader d = new Reader("Jas", "Kowalski",18, "XD 11", "NIE", "65093045874");
-       // Book c = new Book("Pan Tadeusz", "Adam Mickiewicz","Polska", 2019);
-        //Reader e = new Reader("TestNIE", "Test",18, "test", "NIE", "65093045875");
-        // testowa historia wypozyczenia do wyswietlenia 
-        //Reader test = new Reader("Test2", "Test2",18, "XD 11", "NIE", "65093045872");
-        //Book test1 = new Book("przeterminowanaojedendzien", "ABCD","ENGLANDO", 2019, 9);
-        //lib.addReader(d);
-        // lib.addReader(f);
-        //lib.addBook(c);
-        //lib.booksWrite();
-        //lib.readersWrite();
-        
-        //Zapisywanie
-        //lib.booksWrite();
-        //lib.readerWrite();
-        //Wypozycz
-       
-         //lib.wypozycz("65093045872","przeterminowanaojedendzien","ABCD");
-         //lib.booksWrite();
-        //lib.readersWrite();
-        //lib.overdueBooks();
-        //System.out.println(lib.allBorrowedBooksByReader("65093045872"));
-        
-        //Zapisz wypozyczenie
-        //lib.readerWrite();
-      
-        //lib.banReader("65093045874");
-        //lib.readersWrite();
-       // lib.searchReader(readers.get(d), 65093045874L);
-
-       //lib.dajmiwszystkiewypozyczone();
-        
-        //RandomAccessFile file = new RandomAccessFile("Ksiazki.txt","rw");
-       
 
         int choice;
-        System.out.println("Witaj w Bibliotece!");
+        System.out.println("Welcome to the library!");
         do 
         {
             choice = MenuMethods.getMenuChoice( "1.\tView books" +
@@ -95,7 +43,7 @@ public class Main {
                                                 "\n14.\tShow books that are overdue returns." +
                                                 "\n15.\tExit", 15,
                                                 "Please enter your choice:", "Error [1,15] Only");
-        // String temp = keyboard.nextLine(); This prevented entering the choice.
+        
         //---------------------------------------------------------------------------------------
 //          Name:        Switch Statement.
 //          Description: This is used for a menu system.
@@ -158,9 +106,8 @@ public class Main {
 
                         break;
         //---------------------------------------------------------------------------------------
-//                      Name:        Case 4: Edit.
-//                      Description: Choice 4 gives the user an option to edit the book's in the store.
-//                                   This consists of changing nameBook, author, publisher, publishingYear and numerOfBooks.
+//                      Name:        Case 4: Search.
+//                      Description: 
         //---------------------------------------------------------------------------------------
                     case 6:
                         System.out.println("Search for a book by parameter");
@@ -277,9 +224,6 @@ public class Main {
                         
                      
                         lib.findMatchingReaders(name, surname, age, address, banned, pin);
-                        //lib.FindMatchingReaders();
-                        
-                        //lib.FindMatchingBooks("Pan Tadeusz", null,"Polska", 2019, 1);
                         
                         break;
         //---------------------------------------------------------------------------------------
@@ -302,7 +246,7 @@ public class Main {
                     case 9:
                         System.out.println("Edit reader");
                        
-                        System.out.println("Please, enter the parameters of the book.");
+                        System.out.println("Please, enter the parameters of the reader.");
                         Reader readerEdit = MenuMethods.userInputReader();
                         
                         
@@ -339,7 +283,6 @@ public class Main {
                         lib.borrowBook(PIN, nB, authoR);
                         lib.readersWrite();
                         lib.booksWrite();
-                        //lib.wypozycz("65093045872","przeterminowanaojedendzien","ABCD");
                         break;
                         
                     case 12:
