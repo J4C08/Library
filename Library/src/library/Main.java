@@ -147,8 +147,16 @@ public class Main {
                         String usePublishingYear = keyboard.nextLine();
                         
                         if(usePublishingYear.equals("YES")){
-                        System.out.println("Please enter the publishing year.");
-                        publishingYear = keyboard.nextInt();
+                        do{
+                            try {
+                            OK = true;
+                            System.out.println("Please enter the publisher year:");
+                            publishingYear = keyboard.nextInt();
+                            } catch (InputMismatchException e) {
+           
+                                OK=false;keyboard.nextLine();
+                            }
+                            }while(!OK || String.valueOf(publishingYear).length() != 4);
                         }
 
                         lib.findMatchingBooks(nameBook, author, publisher, publishingYear);
