@@ -345,7 +345,7 @@ public class Main {
                     case 12:
                         System.out.println("Show all books that are borrowed");
                        
-                        lib.allBorrowedBooks();
+                        System.out.println(lib.allBorrowedBooks());
                         break;    
                     
                     case 13:
