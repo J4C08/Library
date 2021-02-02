@@ -1,6 +1,7 @@
 package library;
 
 import java.time.LocalDate;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -116,7 +117,7 @@ public class Main {
                         String author = null;
                         String publisher = null;
                         int publishingYear = -1;
-                        int numberOfBooks = -1;
+                        boolean OK;
                         
                         System.out.println("Do you want to filter by name? Type YES");
                         String useNameBook = keyboard.nextLine();
@@ -191,9 +192,16 @@ public class Main {
                         String useAge = keyboard.nextLine();
                         
                         if(useAge.equals("YES")){
-                        System.out.println("Please enter the age.");
-                        age = keyboard.nextInt();
-                        keyboard.nextLine();
+                            do{
+                                try {
+                                    OK = true;
+                                    System.out.println("Please enter the age:");
+                                    age = keyboard.nextInt();
+                                }           
+                                    catch (InputMismatchException e) {
+                                        OK=false;keyboard.nextLine();
+                                    }
+                            }while(!OK);
                         }
                         
        
@@ -218,8 +226,10 @@ public class Main {
                         String usePIN  = keyboard.nextLine();
                         
                         if(usePIN.equals("YES")){
-                        System.out.println("Please enter the PIN.");
-                         pin = keyboard.nextLine();
+                            do{
+                                System.out.println("Please enter the PIN:"); 
+                                pin = keyboard.next();
+                            }while(pin.length() != 11);
                         }
                         
                      
