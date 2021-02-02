@@ -46,7 +46,7 @@ public class Library implements Serializable {
     {
             for (int i = 0; i < readers.size(); i++) {
                 if (readers.get(i).getPIN().equalsIgnoreCase(PIN)) {
-                    System.out.println("Uda³o ci siê zmotyfikowaæ czytelnika.");
+                    System.out.println("You have successfully modified the reader...");
                     readers.set(i, reader);
                 }
             }
@@ -99,7 +99,7 @@ public class Library implements Serializable {
 //---------------------------------------------------------------------------
    public void banReader(String PIN) {
       Reader r = searchReader(PIN);
-        r.setBanned("TAK"); 
+        r.setBanned("YES"); 
     }
 //---------------------------------------------------------------------------
 //Name:          Print method.
@@ -210,7 +210,7 @@ public class Library implements Serializable {
 //Name:         findMatchingBooks method.
 //Description:  Search for a book by any parameter.
 //---------------------------------------------------------------------------
-    public void findMatchingBooks(String nameBook, String author, String publisher, int publishingYear, int numberOfBooks) {
+    public void findMatchingBooks(String nameBook, String author, String publisher, int publishingYear) {
         
         for (Book book : books) {
                 if (nameBook != null && !book.getNameBook().equals(nameBook)) {
@@ -231,11 +231,6 @@ public class Library implements Serializable {
                 if (publishingYear != -1 && book.getPublishingYear() != publishingYear) {
                   
                      continue;
-                }
-                
-                if (numberOfBooks != -1 && book.getNumberOfBooks() != numberOfBooks) {
-                    
-                    continue;
                 }
                 
                 System.out.println("Matching user found: \n" + book.toString());
@@ -304,17 +299,22 @@ public class Library implements Serializable {
         }return null;
  }
     
-    public boolean wypozycz(String PIN, String nameBook, String author) {
+    public boolean borrowBook(String PIN, String nameBook, String author) {
          
         Book y = searchBook(books, nameBook, author);
         Reader x = searchReader(readers, PIN);
         
-            if (x == null || y == null) 
+            if (x == null || y == null || x.getBanned().equals("YES")) 
             { 
-                return false; 
-            }
+                System.out.println("Nie znaleziono ksi¹zki, autora lub czytelnik jest zablokowany.");
+                return false;
+            } 
+                
+        
+            
+            
         Loan z = new Loan(date.toString(),date.plusWeeks(2).toString());    
-        x.wypozycz(y);
+        x.addBookBorrowed(y);
         x.loan(z);
         y.loan(z);
         books.remove(y);
@@ -326,7 +326,7 @@ public class Library implements Serializable {
         ArrayList<Book> allBorrowed = new ArrayList<Book>();
         
        for (Reader r : readers) {
-            for (Book b : r.wypozyczone) {
+            for (Book b : r.loanBook) {
                 allBorrowed.add(b);
                 System.out.print(allBorrowed.toString());
             }
@@ -337,8 +337,8 @@ public class Library implements Serializable {
     
         public ArrayList<Book> allBorrowedBooksByReader(String PIN) {
             Reader x = searchReader(PIN);
-            System.out.println(x.wypozyczone.toString());
-            return x.wypozyczone;
+            System.out.println(x.loanBook.toString());
+            return x.loanBook;
     }
         
         private Reader searchReader(String PIN) {
@@ -353,7 +353,7 @@ public class Library implements Serializable {
         ArrayList<Book> overdueBooks = new ArrayList<Book>();
         books.removeAll(overdueBooks);
             for (Reader r : readers) {
-                for (Book b : r.wypozyczone) {
+                for (Book b : r.loanBook) {
                     for(Loan l : r.loanHistory){
                         if(LocalDate.parse(l.getDateOfReturn()).compareTo(date) <= -1 || LocalDate.parse(l.getDateOfReturn()).compareTo(date) <= -14 ){
                         overdueBooks.add(b);
@@ -362,7 +362,7 @@ public class Library implements Serializable {
                 }
             }
            
-        } ;
+        } 
         return overdueBooks;
      }
 }
