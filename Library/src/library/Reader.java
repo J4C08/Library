@@ -2,13 +2,12 @@ package library;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class Reader implements Serializable {
 private static final long serialVersionUID = -2908137848364231871L;
     ArrayList<Loan> loanHistory = new ArrayList<Loan>();
-    ArrayList<Book> wypozyczone = new ArrayList<Book>();
+    ArrayList<Book> loanBook = new ArrayList<Book>();
     private String name;
     private String surname;
     private int age;
@@ -76,8 +75,8 @@ private static final long serialVersionUID = -2908137848364231871L;
             this.PIN = PIN;
     }
     
-    public void wypozycz(Book b) {
-        wypozyczone.add(b);
+    public void addBookBorrowed(Book b) {
+        loanBook.add(b);
         
         }
     
@@ -86,16 +85,17 @@ private static final long serialVersionUID = -2908137848364231871L;
         
         }
     // toString.
+@Override
      public String toString() 
     {
         return 
-             "---------------------------Czytelnik---------------------------" +
-                "\nImiê: " + name + 
-                "\nNazwisko: "+ surname + 
-                "\nWiek: "+ age + 
-                "\nAdres: " + address +
-                "\nZablokowany: " + banned +
-                "\nPesel: " + PIN +"\n\n";
+             "---------------------------Readers---------------------------" +
+                "\nName: " + name + 
+                "\nSurname: "+ surname + 
+                "\nAge: "+ age + 
+                "\nAddress: " + address +
+                "\nBanned: " + banned +"\n\n";
+                
     }
      
       
