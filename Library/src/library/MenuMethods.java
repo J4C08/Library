@@ -58,14 +58,26 @@ public class MenuMethods {
         
         String temp = keyboard.nextLine();
         Book s = null;
+        boolean OK;
+        int publishingYear = 0;
         System.out.println("Please enter the name book:");
         String nameBook = keyboard.nextLine();
         System.out.println("Please enter the author:");
         String author = keyboard.nextLine();
         System.out.println("Please enter the publisher:");
         String publisher = keyboard.nextLine();
-        System.out.println("Please enter the publisher year:");
-        int publishingYear = keyboard.nextInt();
+        do{
+         try {
+            OK = true;
+            System.out.println("Please enter the publisher year:");
+            publishingYear = keyboard.nextInt();
+            } catch (InputMismatchException e) {
+           
+            OK=false;keyboard.nextLine();
+            }
+        }while(!OK || String.valueOf(publishingYear).length() != 4);
+        
+        
 
         
         return s = new Book(nameBook, author, publisher, publishingYear);
