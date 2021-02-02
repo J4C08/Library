@@ -110,20 +110,7 @@ public class Library implements Serializable {
         for (Reader r : readers) {
             System.out.print(r.toString());
         }
-    }
-    
-//---------------------------------------------------------------------------
-//Name:          searchPIN method.
-//Description:   It searches for the reader by his or her personal identification number.
-//---------------------------------------------------------------------------
-      public void searchPIN(String PIN) {
-    System.out.println("\n"+"Enter the PIN of the Reader you would like to search for: ");
-    for (int i = 0; i < readers.size(); i++) {
-        if (readers.get(i).getName().equals(PIN)) {
-            
-        } 
-    }
-  }
+    }   
 
 //---------------------------------------------------------------------------
 //Name:          readerWrite() method.
@@ -306,13 +293,10 @@ public class Library implements Serializable {
         
             if (x == null || y == null || x.getBanned().equals("YES")) 
             { 
-                System.out.println("Nie znaleziono ksi¹zki, autora lub czytelnik jest zablokowany.");
+                System.out.println("Book not found, author or reader is blocked.");
                 return false;
             } 
-                
-        
-            
-            
+                 
         Loan z = new Loan(date.toString(),date.plusWeeks(2).toString());    
         x.addBookBorrowed(y);
         x.loan(z);
@@ -328,10 +312,10 @@ public class Library implements Serializable {
        for (Reader r : readers) {
             for (Book b : r.loanBook) {
                 allBorrowed.add(b);
-                System.out.print(allBorrowed.toString());
             }
+            
             }
-       
+       books.removeAll(allBorrowed);
            return allBorrowed;
         } 
     
