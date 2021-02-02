@@ -15,19 +15,19 @@ public class Book implements Serializable {
     private String author;
     private String publisher;
     private int publishingYear;
-    private int numberOfBooks;
+  
 
      public Book() {
          
     }
     
     // Konstruktor
-    public Book(String nameBook, String author, String publisher, int publishingYear, int numberOfBooks) {
+    public Book(String nameBook, String author, String publisher, int publishingYear) {
         this.nameBook = nameBook;
         this.author = author;
         this.publisher = publisher;
         this.publishingYear = publishingYear;
-        this.numberOfBooks = numberOfBooks;
+       
 
     }
     
@@ -48,9 +48,7 @@ public class Book implements Serializable {
         return publishingYear;
     }
 
-    public int getNumberOfBooks() {
-        return numberOfBooks;
-    }
+   
     // Settery
 
     public void setNameBook(String nameBook) {
@@ -69,10 +67,6 @@ public class Book implements Serializable {
         this.publishingYear = publishingYear;
     }
 
-    public void setNumberOfBooks(int numberOfBooks) {
-        this.numberOfBooks = numberOfBooks;
-    }
-    
     public void loan(Loan loan) {
         loanHistory.add(loan);
         
@@ -82,12 +76,12 @@ public class Book implements Serializable {
      public String toString() 
     {
         return 
-             "---------------------------Ksi¹¿ki---------------------------" +
+                "---------------------------Books---------------------------" +
                 "\nNazwa ksi¹¿ki: " + nameBook + 
-                "\nAutor: "+ author + 
-                "\nWydawnictwo : "+ publisher + 
-                "\nRok wydania publikacji : " + publishingYear +
-                "\nLiczba ksi¹¿ek : " + numberOfBooks +"\n\n";
+                "\nBook author: "+ author + 
+                "\nPublisher : "+ publisher + 
+                "\nPublication year : " + publishingYear +"\n\n";
+              
     }
 
  
