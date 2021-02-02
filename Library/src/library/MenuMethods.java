@@ -4,6 +4,7 @@ package library;
 //  Name:           Imports. 
 //  Description:    To allow the use of different Java classes.
 //---------------------------------------------------------------------------------------
+import java.util.InputMismatchException;
 import java.util.Scanner;
 //---------------------------------------------------------------------------------------
 public class MenuMethods {
@@ -88,8 +89,10 @@ public class MenuMethods {
  
   public static Reader userInputReader() 
     {
-        
+        boolean OK;
         Reader x = null;
+        int age = 0;
+        String PIN = null;
         System.out.println("Please enter the name:");
         keyboard.nextLine();
         String name = keyboard.nextLine();
@@ -97,8 +100,17 @@ public class MenuMethods {
         System.out.println("Please enter the surname:");
         String surname = keyboard.next();
         keyboard.nextLine();
-        System.out.println("Please enter the age:");
-        int age = keyboard.nextInt();
+        do{
+         try {
+            OK = true;
+            System.out.println("Please enter the age:");
+            age = keyboard.nextInt();
+            } catch (InputMismatchException e) {
+           
+            OK=false;keyboard.nextLine();
+            }
+        }while(!OK);
+       
         keyboard.nextLine();
         System.out.println("Please enter the address:");
         String address = keyboard.nextLine();
@@ -106,9 +118,14 @@ public class MenuMethods {
         
         String banned = "NO";
         
-        System.out.println("Please enter the PIN:");
-        String PIN = keyboard.next();
-    
+         do{
+         System.out.println("Please enter the PIN:"); 
+         PIN = keyboard.next();
+         }while(PIN.length() != 11);
+        
+        
+        
+       
         return x = new Reader(name, surname, age, address, banned, PIN);
 
     } 
@@ -118,9 +135,12 @@ public class MenuMethods {
         // String temp is for some reason needed. If it is not included
         // The code will not execute properly.
        
+        String PIN = null;
         
-        System.out.println("Please enter your PIN.");
-        String PIN = keyboard.next();
+        do{
+         System.out.println("Please enter the PIN:"); 
+         PIN = keyboard.next();
+         }while(PIN.length() != 11);
 
         return PIN;
 
