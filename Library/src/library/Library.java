@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
+import java.util.Collections;
 //---------------------------------------------------------------------------   
 public class Library implements Serializable { 
 //---------------------------------------------------------------------------
@@ -98,8 +99,15 @@ public class Library implements Serializable {
 //Description:   Ban reader.
 //---------------------------------------------------------------------------
    public void banReader(String PIN) {
+       
       Reader r = searchReader(PIN);
+      if(r != null){
         r.setBanned("YES"); 
+      }
+      else{
+      System.out.println("There is no such reader in the database...");
+      }
+      
     }
 //---------------------------------------------------------------------------
 //Name:          Print method.
@@ -107,6 +115,7 @@ public class Library implements Serializable {
 //---------------------------------------------------------------------------
     public void printReaders() 
     {
+        Collections.sort(readers);
         for (Reader r : readers) {
             System.out.print(r.toString());
         }
@@ -117,7 +126,7 @@ public class Library implements Serializable {
 //Description:   Saves the reader object to a file.
 //---------------------------------------------------------------------------
      public void readersWrite() throws Exception {
-        // Create book object
+        // Create reader object
         // Create file output stream
         FileOutputStream fos = new FileOutputStream("reader.txt");
         // Create object output stream
@@ -140,8 +149,8 @@ public class Library implements Serializable {
     ObjectInputStream ois = new ObjectInputStream(fis);                               
     // Read reader object data                                                                       
     readers = (ArrayList) ois.readObject();   
-    // Output student information                                                                         
-    System.out.println(readers);                                                      
+    // Output readers information                                                                         
+    //System.out.println(readers);                                                      
     // Close the input stream                                                                          
     fis.close();                                                                      
     ois.close();                                                                      
@@ -230,6 +239,7 @@ public class Library implements Serializable {
 //---------------------------------------------------------------------------
     public void printBooks() 
     {
+        Collections.sort(books);
        for (Book b : books) {
             System.out.println(b.toString());
         }
@@ -265,7 +275,7 @@ public class Library implements Serializable {
     books = (ArrayList) ois.readObject();   
     
     // Output book information                                                                         
-    System.out.println(books);                                                      
+    //System.out.println(books);                                                      
     // Close the input stream                                                                          
     fis.close();                                                                      
     ois.close();                                                                      
