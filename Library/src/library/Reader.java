@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class Reader implements Serializable {
+public class Reader implements Serializable, Comparable<Reader> {
 private static final long serialVersionUID = -2908137848364231871L;
     ArrayList<Loan> loanHistory = new ArrayList<Loan>();
     ArrayList<Book> loanBook = new ArrayList<Book>();
@@ -89,7 +89,7 @@ private static final long serialVersionUID = -2908137848364231871L;
      public String toString() 
     {
         return 
-             "---------------------------Readers---------------------------" +
+             "---------------------------Reader---------------------------" +
                 "\nName: " + name + 
                 "\nSurname: "+ surname + 
                 "\nAge: "+ age + 
@@ -98,7 +98,12 @@ private static final long serialVersionUID = -2908137848364231871L;
                 
     }
      
-      
+       @Override
+  public int compareTo(Reader o) {
+    return this.getSurname().compareTo(o.getSurname());
+
+  }
+  
 }
       
 
