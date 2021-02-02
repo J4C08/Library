@@ -91,11 +91,12 @@ public class MenuMethods {
         
         Reader x = null;
         System.out.println("Please enter the name:");
-        String name = keyboard.next();
+        keyboard.nextLine();
+        String name = keyboard.nextLine();
         
         System.out.println("Please enter the surname:");
         String surname = keyboard.next();
-        
+        keyboard.nextLine();
         System.out.println("Please enter the age:");
         int age = keyboard.nextInt();
         keyboard.nextLine();
