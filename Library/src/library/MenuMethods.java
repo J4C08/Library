@@ -53,6 +53,8 @@ public class MenuMethods {
 //---------------------------------------------------------------------------------------
     public static Book userInputBook() 
     {
+        
+        
         String temp = keyboard.nextLine();
         Book s = null;
         System.out.println("Please enter the name book:");
@@ -63,10 +65,9 @@ public class MenuMethods {
         String publisher = keyboard.nextLine();
         System.out.println("Please enter the publisher year:");
         int publishingYear = keyboard.nextInt();
-        System.out.println("Please enter the numer of books:");
-        int numberOfBooks = keyboard.nextInt();
+
         
-        return s = new Book(nameBook, author, publisher, publishingYear, numberOfBooks );
+        return s = new Book(nameBook, author, publisher, publishingYear);
 
     }
 
@@ -102,31 +103,14 @@ public class MenuMethods {
         String address = keyboard.nextLine();
         
         
-        String banned = "NIE";
+        String banned = "NO";
         
         System.out.println("Please enter the PIN:");
         String PIN = keyboard.next();
     
         return x = new Reader(name, surname, age, address, banned, PIN);
 
-    }
-  
-    public static Book inputUserFindMatchingBooks(){
-        String temp = keyboard.nextLine();
-        Book s = null;
-        System.out.println("Please enter the name book or type null:");
-        String nameBook = keyboard.nextLine();
-        System.out.println("Please enter the author or type null:");
-        String author = keyboard.nextLine();
-        System.out.println("Please enter the publisher or type null:");
-        String publisher = keyboard.nextLine();
-        System.out.println("Please enter the publisher year or type -1:");
-        int publishingYear = keyboard.nextInt();
-        System.out.println("Please enter the numer of books or type -1:");
-        int numberOfBooks = keyboard.nextInt();
-        
-        return s = new Book(nameBook, author, publisher, publishingYear, numberOfBooks );
-    }
+    } 
     
     public static String userInputByPIN() 
     {
