@@ -87,27 +87,32 @@ public class MenuMethods {
  
   public static Reader userInputReader() 
     {
-        String temp = keyboard.nextLine();
+        
         Reader x = null;
         System.out.println("Please enter the name:");
-        String name = keyboard.nextLine();
+        String name = keyboard.next();
+        
         System.out.println("Please enter the surname:");
-        String surname = keyboard.nextLine();
+        String surname = keyboard.next();
+        
         System.out.println("Please enter the age:");
         int age = keyboard.nextInt();
+        keyboard.nextLine();
         System.out.println("Please enter the address:");
         String address = keyboard.nextLine();
-        System.out.println("Please enter the publisher year:");
-        String banned = "NIE";
-        System.out.println("Please enter the numer of books:");
-        String PIN = keyboard.nextLine();
         
+        
+        String banned = "NIE";
+        
+        System.out.println("Please enter the PIN:");
+        String PIN = keyboard.next();
+    
         return x = new Reader(name, surname, age, address, banned, PIN);
 
     }
   
     public static Book inputUserFindMatchingBooks(){
-    String temp = keyboard.nextLine();
+        String temp = keyboard.nextLine();
         Book s = null;
         System.out.println("Please enter the name book or type null:");
         String nameBook = keyboard.nextLine();
@@ -123,15 +128,17 @@ public class MenuMethods {
         return s = new Book(nameBook, author, publisher, publishingYear, numberOfBooks );
     }
     
-    public static String userInputByPIN(){
-        String temp = keyboard.nextLine();
-        Reader s = null;
+    public static String userInputByPIN() 
+    {
+        // String temp is for some reason needed. If it is not included
+        // The code will not execute properly.
        
-        String PIN = keyboard.nextLine();
+        
+        System.out.println("Please enter your PIN.");
+        String PIN = keyboard.next();
 
         return PIN;
-    
-    
+
     }
 
     
@@ -139,9 +146,7 @@ public class MenuMethods {
     {
         // String temp is for some reason needed. If it is not included
         // The code will not execute properly.
-        String temp = keyboard.nextLine();
-        Book s = null;
-        System.out.println("Please name the author of the book:");
+        
         String author = keyboard.nextLine();
 
         return author;
