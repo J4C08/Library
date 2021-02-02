@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Loan implements Serializable {
+    
+    private static final long serialVersionUID = 3100732459499690237L;
    ArrayList<Loan> loans = new ArrayList<Loan>();
 
     private String dateOfReturn;
@@ -32,30 +34,13 @@ public class Loan implements Serializable {
         this.dateOfReturn = dateOfReturn;
     }
     
-    
-    public void addLoan(Loan loan) 
-    {
-        loans.add(loan);
-    }
-    // TESTOWE
-    public void printLoan() 
-    {
-       for (Loan b : loans) {
-            System.out.println(b.toString());
-        }
-    }
-    // TESTOWE
-    public void wypozyczz(Loan b) {
-        loans.add(b);
-        }
-    
    @Override
      public String toString() 
     {
         return 
-             "---------------------------Wypo¿yczenie---------------------------" +
-                "\nData wypo¿yczenia: " + dateOfLoan + 
-                "\nData oddania: "+ dateOfReturn+"\n\n";
+             "---------------------------Loan history---------------------------" +
+                "\nDate of loan: " + dateOfLoan + 
+                "\nDate of return: "+ dateOfReturn+"\n\n";
 
     }
 
