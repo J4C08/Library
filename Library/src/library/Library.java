@@ -74,17 +74,17 @@ public class Library implements Serializable {
                      continue;
                 }
                 
-                 if (address != null && !reader.getSurname().equals(address)) {
+                 if (address != null && !reader.getAddress().equals(address)) {
                     
                     continue;
                 }
                 
-                if (banned != null && !reader.getSurname().equals(banned)) {
+                if (banned != null && !reader.getBanned().equals(banned)) {
                   
                      continue;
                 } 
                 
-               if (PIN != null && !reader.getSurname().equals(PIN)) {
+               if (PIN != null && !reader.getPIN().equals(PIN)) {
                     
                     continue;
                 }
@@ -98,8 +98,8 @@ public class Library implements Serializable {
 //Description:   Ban reader.
 //---------------------------------------------------------------------------
    public void banReader(String PIN) {
-        Reader x = searchReader(PIN);
-        x.setBanned("TAK"); 
+      Reader r = searchReader(PIN);
+        r.setBanned("TAK"); 
     }
 //---------------------------------------------------------------------------
 //Name:          Print method.
@@ -120,7 +120,7 @@ public class Library implements Serializable {
     System.out.println("\n"+"Enter the PIN of the Reader you would like to search for: ");
     for (int i = 0; i < readers.size(); i++) {
         if (readers.get(i).getName().equals(PIN)) {
-            System.out.println(("Znalazles: " + readers.get(i).getPIN()));
+            
         } 
     }
   }
@@ -324,17 +324,20 @@ public class Library implements Serializable {
 
     public ArrayList<Book> allBorrowedBooks() {
         ArrayList<Book> allBorrowed = new ArrayList<Book>();
+        
        for (Reader r : readers) {
             for (Book b : r.wypozyczone) {
                 allBorrowed.add(b);
-                System.out.println(allBorrowed.toString());
+                System.out.print(allBorrowed.toString());
             }
             }
+       
            return allBorrowed;
         } 
     
         public ArrayList<Book> allBorrowedBooksByReader(String PIN) {
             Reader x = searchReader(PIN);
+            System.out.println(x.wypozyczone.toString());
             return x.wypozyczone;
     }
         
