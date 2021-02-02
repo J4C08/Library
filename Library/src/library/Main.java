@@ -36,7 +36,7 @@ public class Main {
         //lib.addReader(e);
         //lib.addReader(f);
         
-          lib.booksRead();
+         lib.booksRead();
          lib.readersRead();
         
         // tworzenie ksiazek
@@ -46,7 +46,7 @@ public class Main {
         // testowa historia wypozyczenia do wyswietlenia 
         //Reader test = new Reader("Test2", "Test2",18, "XD 11", "NIE", "65093045872");
         //Book test1 = new Book("przeterminowanaojedendzien", "ABCD","ENGLANDO", 2019, 9);
-        //lib.addReader(test);
+        //lib.addReader(d);
          //lib.addReader(f);
         //lib.addBook(test1);
         //lib.booksWrite();
@@ -60,26 +60,21 @@ public class Main {
          //lib.wypozycz("65093045872","przeterminowanaojedendzien","ABCD");
          //lib.booksWrite();
         //lib.readersWrite();
-        lib.overdueBooks();
+        //lib.overdueBooks();
         //System.out.println(lib.allBorrowedBooksByReader("65093045872"));
         
         //Zapisz wypozyczenie
         //lib.readerWrite();
       
-        
+        //lib.banReader("65093045874");
+        //lib.readersWrite();
        // lib.searchReader(readers.get(d), 65093045874L);
 
        //lib.dajmiwszystkiewypozyczone();
         
         //RandomAccessFile file = new RandomAccessFile("Ksiazki.txt","rw");
        
-        //getBytes() returns an array of bytes.
-        //Because i have put the store in a static Array.(I done this because i could find no other
-        //Simple way to write a Student Object.)
-        //None of the methods of the RandomAccessFile write class worked with this.
-        //Book[] books = {a,b,c,d,e};
-        //bs.write(file);
-        //details.readAll(file);
+
         int choice;
         System.out.println("Witaj w Bibliotece!");
         do 
@@ -117,9 +112,10 @@ public class Main {
         //---------------------------------------------------------------------------------------
 //          Name:        Case 2: Add
 //          Description: Choice 2 is to add an Book to the store.
-        //---------------------------------------------------------------------------------------
+        //-------------------------------------------2--------------------------------------------
                     case 2:
                         System.out.println("Add book");
+                        
                         Book addBook = MenuMethods.userInputBook();
                         lib.addBook(addBook);
                         lib.booksWrite();
@@ -132,8 +128,10 @@ public class Main {
         //---------------------------------------------------------------------------------------
                     case 3:
                         System.out.println("Edit book");
+                        
                         System.out.println("Enter the parameters of the book.");
                         Book bookEdit = MenuMethods.userInputBook();
+                        
                         System.out.println("Please provide the title of the book you wish to edit.");
                         String searchBook = MenuMethods.userInputBookName();
                         lib.updateBook(searchBook, bookEdit);
@@ -146,6 +144,7 @@ public class Main {
         //---------------------------------------------------------------------------------------
                     case 4:
                         System.out.println("Delete book");
+                      
                         System.out.println("Please state the title of the book you wish to remove.");
                         String delete = MenuMethods.userInputBookName();
                         lib.deleteBook(delete);
@@ -159,23 +158,52 @@ public class Main {
         //---------------------------------------------------------------------------------------
                     case 5:
                         System.out.println("Search for a book by parameter");
+ 
                         String nameBook = null;
                         String author = null;
                         String publisher = null;
                         int publishingYear = -1;
                         int numberOfBooks = -1;
-                        String temp = keyboard.nextLine();
-                        System.out.println("Enter a name or type null:");
-                        System.out.println("Please enter the name book or type null:");
+                        
+                        System.out.println("Do you want to filter by name? Type YES");
+                        String useNameBook = keyboard.nextLine();
+                        
+                        if(useNameBook.equals("YES")){
+                        System.out.println("Please enter the name book.");
                         nameBook = keyboard.nextLine();
-                        System.out.println("Please enter the author or type null:");
+                        }
+                        
+                        System.out.println("Do you want to filter by author? Type YES");
+                        String useAuthor = keyboard.nextLine();
+                        
+                        if(useAuthor.equals("YES")){
+                        System.out.println("Please enter the author.");
                         author = keyboard.nextLine();
-                        System.out.println("Please enter the publisher or type null:");
+                        }
+                        
+                        System.out.println("Do you want to filter by publisher? Type YES");
+                        String usePublisher = keyboard.nextLine();
+                        
+                        if(usePublisher.equals("YES")){
+                        System.out.println("Please enter the publisher.");
                         publisher = keyboard.nextLine();
-                        System.out.println("Please enter the publisher year or type -1:");
+                        }
+                        
+                         System.out.println("Do you want to filter by publishing year? Type YES");
+                        String usePublishingYear = keyboard.nextLine();
+                        
+                        if(usePublishingYear.equals("YES")){
+                        System.out.println("Please enter the publishing year.");
                         publishingYear = keyboard.nextInt();
-                        System.out.println("Please enter the numer of books or type -1:");
-                        numberOfBooks = keyboard.nextInt();
+                        }
+                        
+                         System.out.println("Do you want to filter by number of books? Type YES");
+                        String useNumberOfBooks  = keyboard.nextLine();
+                        
+                        if(useNumberOfBooks.equals("YES")){
+                        System.out.println("Please enter the number of books.");
+                         numberOfBooks = keyboard.nextInt();
+                        }
                         
                         lib.findMatchingBooks(nameBook, author, publisher, publishingYear, numberOfBooks);
                         
@@ -188,29 +216,68 @@ public class Main {
 //                       Search will run through the store and output the book match the user inputs.
         //---------------------------------------------------------------------------------------
                     case 6:
-                        System.out.println("View readers by parameter"); 
+                        System.out.println("View readers by parameter");
+                       
                         String name = null;
                         String surname = null;
                         int age = -1;
                         String address = null;
                         String banned = null;
                         String pin = null;
-                        String temp2 = keyboard.nextLine();
-                        System.out.println("Enter a name or type null:");
-                        name = keyboard.nextLine();
-                        System.out.println("Please enter the name book or type null:");
-                        surname = keyboard.nextLine();
-                        System.out.println("Please enter the author or type null:");
-                        age = keyboard.nextInt();
-                        System.out.println("Please enter the publisher or type null:");
-                        address = keyboard.nextLine();
-                        System.out.println("Please enter the publisher or type null:");
-                        banned = keyboard.nextLine();
-                        System.out.println("Please enter the publisher year or type -1:");
-                        pin = keyboard.nextLine();
-                        System.out.println("Please enter the numer of books or type -1:");
-                        numberOfBooks = keyboard.nextInt();
                         
+                        
+                        System.out.println("Do you want to filter by name? Type YES");
+                        String useName = keyboard.nextLine();
+                        
+                        if(useName.equals("YES")){
+                        System.out.println("Please enter the name.");
+                        name = keyboard.nextLine();
+                        }
+                        
+                        System.out.println("Do you want to filter by surname? Type YES");
+                        String useSurname = keyboard.nextLine();
+                        
+                        if(useSurname.equals("YES")){
+                        System.out.println("Please enter the surname.");
+                        author = keyboard.nextLine();
+                        }
+                        
+                        System.out.println("Do you want to filter by age? Type YES");
+                        String useAge = keyboard.nextLine();
+                        
+                        if(useAge.equals("YES")){
+                        System.out.println("Please enter the age.");
+                        age = keyboard.nextInt();
+                        keyboard.nextLine();
+                        }
+                        
+       
+                        System.out.println("Do you want to filter by address? Type YES");
+                        String useAddress = keyboard.nextLine();
+                        
+                        if(useAddress.equals("YES")){
+                        System.out.println("Please enter the address.");
+                        address = keyboard.nextLine();
+                        }
+                        
+                        
+                         System.out.println("Do you want to filter by banned readers? Type YES");
+                        String useBanned = keyboard.nextLine();
+                        
+                        if(useBanned.equals("YES")){
+                        System.out.println("Please enter the YES or NO.");
+                        banned = keyboard.nextLine();
+                        }
+                        
+                         System.out.println("Do you want to filter by PIN? Type YES");
+                        String usePIN  = keyboard.nextLine();
+                        
+                        if(usePIN.equals("YES")){
+                        System.out.println("Please enter the PIN.");
+                         pin = keyboard.nextLine();
+                        }
+                        
+                     
                         lib.findMatchingReaders(name, surname, age, address, banned, pin);
                         //lib.FindMatchingReaders();
                         
@@ -224,9 +291,10 @@ public class Main {
         //---------------------------------------------------------------------------------------
                     case 7:
                         System.out.println("Add reader");
+                        
                         Reader addReader = MenuMethods.userInputReader();
                         lib.addReader(addReader);
-                        lib.booksWrite();
+                        lib.readersWrite();
 
                         break;
         //---------------------------------------------------------------------------------------
@@ -235,10 +303,11 @@ public class Main {
         //---------------------------------------------------------------------------------------
                     case 8:
                         System.out.println("Edit reader");
+                       
                         System.out.println("Please, enter the parameters of the book.");
                         Reader readerEdit = MenuMethods.userInputReader();
-                        System.out.println("");
-                        System.out.println("Please enter your PIN.");
+                        
+                        
                         String searchReader = MenuMethods.userInputByPIN();
                         lib.updateReader(searchReader, readerEdit);
                         lib.readersWrite();
@@ -247,30 +316,46 @@ public class Main {
                     
                     case 9:
                         System.out.println("Block reader");
+                        
                         String banReader = MenuMethods.userInputByPIN();
+                       
+                       
                         lib.banReader(banReader);
+                        lib.readersWrite();
                         break;
+                        
+                        
                         
                     case 10:
                         System.out.println("Borrow book");
-                        System.out.println("Please enter your PIN.");
+                       
+                        
                         String PIN = MenuMethods.userInputByPIN();
-                        System.out.println(" ");
+                        
+                        System.out.println("Please enter the title of the book you wish to borrow.");                        
                         String nB = MenuMethods.userInputBookName();
+                        
+                        System.out.println("Please enter the author of this book.");
                         String authoR = MenuMethods.userInputAuthor();
+                        
                         lib.wypozycz(PIN, nB, authoR);
+                        lib.readersWrite();
+                        lib.booksWrite();
                         //lib.wypozycz("65093045872","przeterminowanaojedendzien","ABCD");
                         break;
                         
                     case 11:
                         System.out.println("Show all books that are borrowed");
+                       
                         lib.allBorrowedBooks();
                         break;    
                     
                     case 12:
                         System.out.println("Show books borrowed by the selected reader");
-                        System.out.println("Please enter your PIN.");
+                        
                         String pinB = MenuMethods.userInputByPIN();
+                        
+                        System.out.println(pinB);
                         lib.allBorrowedBooksByReader(pinB);
                         break;    
                         
